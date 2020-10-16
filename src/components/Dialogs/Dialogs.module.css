@@ -1,13 +1,13 @@
-.dialogs {
+.dialogsWrapper {
     display: grid;
     grid-template-columns: 3fr 9fr;
 }
 
-.dialogName {
+.dialogsWindow {
     padding: 20px;
 }
 
-.dialogMessage {
+.chatWindow {
     padding: 20px;
 }
 
