@@ -19,30 +19,31 @@ const Message = (props) => {
 }
 
 let nameDataBase = [
-    {id : 1, name: 'Nikita'},
-    {id : 2, name: 'Egor'},
-    {id : 3, name: 'Dima'},
+    {id: 1, name: 'Nikita'},
+    {id: 2, name: 'Egor'},
+    {id: 3, name: 'Dima'},
 ];
+
+let markupNames = nameDataBase.map(elem => <Chat id={elem.id} chatName={elem.name}/>);
 
 let messageDataBase = [
-    {id : 1, text : "Hello!"},
-    {id : 2, text : "How are you?"},
-    {id : 3, text : "I'll find you and kill!"},
+    {id: 1, text: "Hello!"},
+    {id: 2, text: "How are you?"},
+    {id: 3, text: "I'll find you and kill!"},
 ];
 
-const Dialogs = (props) => {
+let markupMessages = messageDataBase.map(elem => <Message message={elem.text}/>);
+
+const
+Dialogs = (props) => {
     return (
         <div className={s.dialogsWrapper}>
             <div className={s.dialogsWindow}>
-                <Chat id={nameDataBase[0].id} chatName={nameDataBase[0].name}/>
-                <Chat id={nameDataBase[1].id} chatName={nameDataBase[1].name}/>
-                <Chat id={nameDataBase[2].id} chatName={nameDataBase[2].name}/>
+                {markupNames}
             </div>
 
             <div className={s.chatWindow}>
-                <Message message={messageDataBase[0].text} />
-                <Message message={messageDataBase[1].text} />
-                <Message message={messageDataBase[2].text} />
+                {markupMessages}
             </div>
         </div>
     );
