@@ -3,11 +3,12 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 let postsDataBase = [
-    {id : 0, text : 'Hello my friends!', like : 25},
-    {id : 1, text : 'I learn react', like : 13},
-    {id : 2, text : 'Far far away...', like : 20},
+    {id: 0, text: 'Hello my friends!', like: 25},
+    {id: 1, text: 'I learn react', like: 13},
+    {id: 2, text: 'Far far away...', like: 20},
 ];
 
+let markupPosts = postsDataBase.map(elem => <Post message={elem.text} like={elem.like}/>);
 
 const MyPosts = () => {
     return <div className={s.content}>
@@ -22,9 +23,7 @@ const MyPosts = () => {
         </div>
 
         <div className={s.posts}>
-            <Post message={postsDataBase[0].text} like={postsDataBase[0].like}/>
-            <Post message={postsDataBase[1].text} like={postsDataBase[1].like}/>
-            <Post message={postsDataBase[2].text} like={postsDataBase[2].like}/>
+            {markupPosts}
         </div>
 
     </div>
