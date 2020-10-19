@@ -11,7 +11,12 @@
     padding: 20px;
 }
 
-.active {
+.dialogsWindow a {
+    color: white;
+    text-decoration: none;
+}
+
+a.active {
     color: gold;
 }
 
