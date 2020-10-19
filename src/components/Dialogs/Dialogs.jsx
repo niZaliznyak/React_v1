@@ -18,20 +18,31 @@ const Message = (props) => {
     );
 }
 
+let nameDataBase = [
+    {id : 1, name: 'Nikita'},
+    {id : 2, name: 'Egor'},
+    {id : 3, name: 'Dima'},
+];
+
+let messageDataBase = [
+    {id : 1, text : "Hello!"},
+    {id : 2, text : "How are you?"},
+    {id : 3, text : "I'll find you and kill!"},
+];
+
 const Dialogs = (props) => {
     return (
         <div className={s.dialogsWrapper}>
             <div className={s.dialogsWindow}>
-                <Chat id="1" chatName="Nikita"/>
-                <Chat id="2" chatName="Dima"/>
-                <Chat id="3" chatName="Sasha"/>
-                <Chat id="4" chatName="Lesha"/>
+                <Chat id={nameDataBase[0].id} chatName={nameDataBase[0].name}/>
+                <Chat id={nameDataBase[1].id} chatName={nameDataBase[1].name}/>
+                <Chat id={nameDataBase[2].id} chatName={nameDataBase[2].name}/>
             </div>
 
             <div className={s.chatWindow}>
-                <Message message="Hi!" />
-                <Message message="How are you?" />
-                <Message message="I'll found you!" />
+                <Message message={messageDataBase[0].text} />
+                <Message message={messageDataBase[1].text} />
+                <Message message={messageDataBase[2].text} />
             </div>
         </div>
     );
