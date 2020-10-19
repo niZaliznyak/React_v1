@@ -7,7 +7,6 @@ let postsDataBase = [
     {id: 1, text: 'I learn react', like: 13},
     {id: 2, text: 'Far far away...', like: 20},
 ];
-
 let markupPosts = postsDataBase.map(elem => <Post message={elem.text} like={elem.like}/>);
 
 const MyPosts = () => {
@@ -23,7 +22,7 @@ const MyPosts = () => {
         </div>
 
         <div className={s.posts}>
-            {markupPosts}
+            { markupPosts }
         </div>
 
     </div>
