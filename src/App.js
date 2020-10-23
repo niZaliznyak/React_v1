@@ -15,10 +15,11 @@ const App = (props) => {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path="/dialogs" render= {() => <Dialogs dialogsNamesData={props.dialogsNamesData}
-                                                                   messageDataBase={props.messageDataBase}/>}
+                    <Route path="/dialogs" render={() => <Dialogs dialogsNamesData={props.dialogsNamesData}
+                                                                  messageDataBase={props.messageDataBase}/>}
                     />
-                    <Route path="/profile" component={Profile}/>
+                    <Route path="/profile" render={() => <Profile postsDataBase={props.postsDataBase}/>}
+                    />
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
                 </div>
