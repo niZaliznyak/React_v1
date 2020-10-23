@@ -7,11 +7,11 @@ const Dialogs = (props) => {
         return (
             <div className={s.dialogsWrapper}>
                 <div className={s.dialogsNamesWindow}>
-                    {props.dialogsNamesData.map(elem => <DialogItem id={elem.id} chatName={elem.name}/>)}
+                    {props.state.dialogsNamesData.map(elem => <DialogItem id={elem.id} chatName={elem.name}/>)}
                 </div>
 
                 <div className={s.chatWindow}>
-                    {props.messageDataBase.map(elem => <ChatItem message={elem.text}/>)}
+                    {props.state.messageDataBase.map(elem => <ChatItem message={elem.text}/>)}
                 </div>
             </div>
         );
