@@ -8,9 +8,11 @@ let state = {
     ],
 
     messageDataBase: [
-        {id: 1, text: "Hello!"},
-        {id: 2, text: "How are you?"},
-        {id: 3, text: "I'll find you and kill!"},
+        {id: 1, sender: true, text: "Hello!"},
+        {id: 2, sender: true, text: "How are you?"},
+        {id: 3, sender: false, text: "I'll find you and hug!"},
+        {id: 4, sender: true, text: "Oh, no!"},
+        {id: 5, sender: false, text: "Time is running..."},
     ],
 
     postsDataBase: [

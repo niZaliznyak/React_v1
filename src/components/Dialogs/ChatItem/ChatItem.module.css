@@ -1,0 +1,19 @@
+.sender {
+    margin-top: 2px;
+    color: #4279de;
+    background-color: white;
+
+    text-align: left;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.answer {
+    margin-top: 2px;
+    color: white;
+    background-color: #4279de;
+
+    text-align: right;
+    border-radius: 5px;
+    padding-right: 5px;
+}

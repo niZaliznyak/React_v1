@@ -12,7 +12,7 @@ const Dialogs = (props) => {
             </div>
 
             <div className={s.chatWindow}>
-                {props.state.messageDataBase.map(elem => <ChatItem message={elem.text}/>)}
+                {props.state.messageDataBase.map(elem => <ChatItem message={elem.text} sender={elem.sender}/>)}
             </div>
         </div>
     );
