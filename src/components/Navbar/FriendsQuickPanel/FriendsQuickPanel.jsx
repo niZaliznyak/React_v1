@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Music = (props) => {
+const FriendsQuickPanel = (props) => {
     return (
         <div>
-            Music
+ffff
         </div>
     )
 }
 
-export default Music;
+export default FriendsQuickPanel;
