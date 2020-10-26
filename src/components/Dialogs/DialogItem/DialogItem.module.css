@@ -1,0 +1,15 @@
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a.active {
+    color: gold;
+}
+
+img.dialogImg {
+    padding-right: 5px;
+    height: 45px;
+    width: 45px;
+    border-radius: 10px;
+}

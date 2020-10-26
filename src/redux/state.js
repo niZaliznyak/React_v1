@@ -2,9 +2,9 @@ import React from 'react';
 
 let state = {
     dialogsNamesData: [
-        {id: 1, name: 'Nikita'},
-        {id: 2, name: 'Egor'},
-        {id: 3, name: 'Dima'},
+        {id: 1, name: 'Nikita', avatar: 'https://avas.at.ua/_ph/45/1/469869713.jpg?1603712491'},
+        {id: 2, name: 'Egor', avatar: 'https://avas.at.ua/_ph/45/1/563058985.jpg?1603712491'},
+        {id: 3, name: 'Dima', avatar: 'https://avas.at.ua/_ph/45/1/940876170.jpg?1603712670'},
     ],
 
     messageDataBase: [
