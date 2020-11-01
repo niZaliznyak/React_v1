@@ -2,6 +2,10 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
+const addPostButton = () => {
+    alert('Hello!')
+}
+
 
 const MyPosts = (props) => {
 
@@ -12,7 +16,7 @@ const MyPosts = (props) => {
 
         <textarea placeholder="Type something"/>
         <div>
-            <button>Add post</button>
+            <button onClick={addPostButton}>Add post</button>
             <button>Remove</button>
         </div>
 

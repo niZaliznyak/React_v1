@@ -9,17 +9,15 @@ import Friends from "./components/Friends/Friends";
 
 const App = (props) => {
     return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <Header/>
-                <Navbar state={props.state}/>
-                <div className='app-wrapper-content'>
-                    <Route path="/dialogs" render={() => <Dialogs state={props.state}/>}/>
-                    <Route path="/profile" render={() => <Profile state={props.state}/>}/>
-                    <Route path="/friends" render={() => <Friends state={props.state}/>}/>
-                </div>
+        <div className='app-wrapper'>
+            <Header/>
+            <Navbar state={props.state}/>
+            <div className='app-wrapper-content'>
+                <Route path="/dialogs" render={() => <Dialogs state={props.state}/>}/>
+                <Route path="/profile" render={() => <Profile state={props.state}/>}/>
+                <Route path="/friends" render={() => <Friends state={props.state}/>}/>
             </div>
-        </BrowserRouter>
+        </div>
     );
 }
 
