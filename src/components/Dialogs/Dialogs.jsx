@@ -3,6 +3,13 @@ import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import ChatItem from "./ChatItem/ChatItem";
 
+const refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
+
+const sendMessageButton = () => {
+    let textAreaValue = refTextArea.current.value;
+    alert(textAreaValue);
+}
+
 const Dialogs = (props) => {
     return (
         <div className={s.dialogsWrapper}>
@@ -13,6 +20,10 @@ const Dialogs = (props) => {
 
             <div className={s.chatWindow}>
                 {props.state.messageDataBase.map(elem => <ChatItem message={elem.text} sender={elem.sender}/>)}
+                <div>
+                    <textarea ref={refTextArea} placeholder="Write message..."/>
+                    <button onClick={sendMessageButton}>Send</button>
+                </div>
             </div>
         </div>
     );
