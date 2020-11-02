@@ -5,7 +5,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 const Profile = (props) => {
     return <div>
         <ProfileInfo/>
-        <MyPosts postsDataBase={props.state.postsDataBase}/>
+        <MyPosts postsDataBase={props.state.postsDataBase} addToPostsDataBase={props.addToPostsDataBase}/>
     </div>
 }
 

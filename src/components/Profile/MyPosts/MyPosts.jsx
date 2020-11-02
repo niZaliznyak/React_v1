@@ -2,15 +2,15 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
-
-const addPostButton = () => { //функция, которая будет привязана к кнопке
-    let textAreaValue = refTextArea.current.value;
-    alert(textAreaValue);
-}
-
-
 const MyPosts = (props) => {
+
+    const refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
+
+    const addPostButton = () => { //функция, которая будет привязана к кнопке
+        debugger;
+        let textAreaValue = refTextArea.current.value;
+        props.addToPostsDataBase(textAreaValue);
+    }
 
     return <div className={s.content}>
         <div>
