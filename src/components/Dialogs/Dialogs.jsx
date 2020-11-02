@@ -5,7 +5,7 @@ import ChatItem from "./ChatItem/ChatItem";
 
 const refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
 
-const sendMessageButton = () => {
+const sendMessageButton = () => { //функция которая будет привязана к кнопке
     let textAreaValue = refTextArea.current.value;
     alert(textAreaValue);
 }
@@ -14,12 +14,12 @@ const Dialogs = (props) => {
     return (
         <div className={s.dialogsWrapper}>
             <div className={s.dialogsNamesWindow}>
-                {props.state.dialogsNamesData.map(elem => <DialogItem id={elem.id} chatName={elem.name}
+                {props.dialogsPage.dialogsNamesData.map(elem => <DialogItem id={elem.id} chatName={elem.name}
                                                                       avatar={elem.avatar}/>)}
             </div>
 
             <div className={s.chatWindow}>
-                {props.state.messageDataBase.map(elem => <ChatItem message={elem.text} sender={elem.sender}/>)}
+                {props.dialogsPage.messageDataBase.map(elem => <ChatItem message={elem.text} sender={elem.sender}/>)}
                 <div>
                     <textarea ref={refTextArea} placeholder="Write message..."/>
                     <button onClick={sendMessageButton}>Send</button>

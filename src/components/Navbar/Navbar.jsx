@@ -18,7 +18,7 @@ const Navbar = (props) => {
             </li>
         </ul>
 
-        <FriendsQuickPanel dialogsNamesData={props.state.dialogsNamesData}/>
+        <FriendsQuickPanel dialogsNamesData={props.state.dialogsPage.dialogsNamesData}/>
 
     </nav>
 }

@@ -4,7 +4,7 @@ import Post from './Post/Post';
 
 const refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
 
-const addPostButton = () => {
+const addPostButton = () => { //функция, которая будет привязана к кнопке
     let textAreaValue = refTextArea.current.value;
     alert(textAreaValue);
 }
