@@ -5,6 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import state from "./redux/state";
 import {BrowserRouter} from "react-router-dom";
+import {addToPostsDataBase} from './redux/state';
+
+addToPostsDataBase("Azaza");
 
 ReactDOM.render(<BrowserRouter>
     <App state={state}/>
