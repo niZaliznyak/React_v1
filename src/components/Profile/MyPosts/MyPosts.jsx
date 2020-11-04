@@ -7,9 +7,9 @@ const MyPosts = (props) => {
     const refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
 
     const addPostButton = () => { //функция, которая будет привязана к кнопке
-        debugger;
         let textAreaValue = refTextArea.current.value;
         props.addToPostsDataBase(textAreaValue);
+        refTextArea.current.value = '';
     }
 
     return <div className={s.content}>

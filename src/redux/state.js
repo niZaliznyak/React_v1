@@ -1,7 +1,8 @@
 import React from 'react';
+import {reRenderEntireTree} from "../render";
 
 let state = {
-    dialogsPage : {
+    dialogsPage: {
         dialogsNamesData: [
             {id: 1, name: 'Nikita', avatar: 'https://avas.at.ua/_ph/45/1/469869713.jpg?1603712491'},
             {id: 2, name: 'Egor', avatar: 'https://avas.at.ua/_ph/45/1/563058985.jpg?1603712491'},
@@ -24,13 +25,14 @@ let state = {
     ]
 };
 
-export let addToPostsDataBase = (postText) =>{
+export let addToPostsDataBase = (postText) => {
     let newPost = {
         id: 3,
         text: postText,
         like: 0
     };
     state.postsDataBase.push(newPost);
+    reRenderEntireTree(state);
 };
 
 export default state;
