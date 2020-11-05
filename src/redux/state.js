@@ -32,7 +32,7 @@ export let addToPostsDataBase = (postText) => {
         like: 0
     };
     state.postsDataBase.push(newPost);
-    reRenderEntireTree(state);
+    reRenderEntireTree(state, addToPostsDataBase);
 };
 
 export default state;

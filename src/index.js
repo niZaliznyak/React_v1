@@ -1,9 +1,9 @@
 import React from 'react';
 import * as serviceWorker from './serviceWorker';
 import {reRenderEntireTree} from "./render";
-import state from "./redux/state";
+import state, {addToPostsDataBase} from "./redux/state";
 
-reRenderEntireTree(state);
+reRenderEntireTree(state, addToPostsDataBase);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
