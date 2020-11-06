@@ -6,11 +6,6 @@ const MyPosts = (props) => {
 
     const refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
 
-    const addPostButton = () => { //функция, которая будет привязана к кнопке
-        let postTextArea = refTextArea.current.value;
-        props.addToPostsDataBase(postTextArea);
-    }
-
     const onPostChange = () => {
         let postTextArea = refTextArea.current.value;
         props.updatePostText(postTextArea);
@@ -23,7 +18,7 @@ const MyPosts = (props) => {
 
         <textarea onChange={onPostChange} ref={refTextArea} value={props.profilePage.postTypingText}/>
         <div>
-            <button onClick={addPostButton}>Add post</button>
+            <button onClick={props.addToPostsDataBase}>Add post</button>
             <button>Remove</button>
         </div>
 

@@ -28,10 +28,10 @@ let state = {
     }
 }
 
-export let addToPostsDataBase = (postText) => {
+export let addToPostsDataBase = () => {
     let newPost = {
         id: 3,
-        text: postText,
+        text: state.profilePage.postTypingText,
         like: 0
     };
     state.profilePage.postsDataBase.push(newPost);
