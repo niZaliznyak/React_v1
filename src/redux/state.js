@@ -1,5 +1,6 @@
 import React from 'react';
-import {reRenderEntireTree} from "../render";
+
+let reRenderEntireTree = () => console.log("");
 
 let state = {
     dialogsPage: {
@@ -28,7 +29,7 @@ let state = {
     }
 }
 
-export let addToPostsDataBase = () => {
+export const addToPostsDataBase = () => {
     let newPost = {
         id: 3,
         text: state.profilePage.postTypingText,
@@ -39,9 +40,13 @@ export let addToPostsDataBase = () => {
     reRenderEntireTree(state);
 }
 
-export let updatePostText = (typetext) => {
+export const updatePostText = (typetext) => {
     state.profilePage.postTypingText = typetext;
     reRenderEntireTree(state);
+}
+
+export const subscribe = (observer) => {
+    reRenderEntireTree = observer;
 }
 
 export default state;
