@@ -35,6 +35,7 @@ export let addToPostsDataBase = (postText) => {
         like: 0
     };
     state.profilePage.postsDataBase.push(newPost);
+    state.profilePage.postTypingText = '';//после добавления поста, очищает textarea
     reRenderEntireTree(state);
 }
 
