@@ -18,12 +18,15 @@ let state = {
         ]
     },
 
-    postsDataBase: [
-        {id: 0, text: 'Hello my friends!', like: 25},
-        {id: 1, text: 'I learn react', like: 13},
-        {id: 2, text: 'Far far away...', like: 20},
-    ]
-};
+    profilePage: {
+        postsDataBase: [
+            {id: 0, text: 'Hello my friends!', like: 25},
+            {id: 1, text: 'I learn react', like: 13},
+            {id: 2, text: 'Far far away...', like: 20},
+        ],
+        postTypingText: ""
+    }
+}
 
 export let addToPostsDataBase = (postText) => {
     let newPost = {
@@ -31,8 +34,13 @@ export let addToPostsDataBase = (postText) => {
         text: postText,
         like: 0
     };
-    state.postsDataBase.push(newPost);
-    reRenderEntireTree(state, addToPostsDataBase);
-};
+    state.profilePage.postsDataBase.push(newPost);
+    reRenderEntireTree(state);
+}
+
+export let updatePostText = (typetext) => {
+    state.profilePage.postTypingText = typetext;
+    reRenderEntireTree(state);
+}
 
 export default state;

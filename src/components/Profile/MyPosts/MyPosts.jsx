@@ -9,7 +9,11 @@ const MyPosts = (props) => {
     const addPostButton = () => { //функция, которая будет привязана к кнопке
         let textAreaValue = refTextArea.current.value;
         props.addToPostsDataBase(textAreaValue);
-        refTextArea.current.value = '';
+    }
+
+    const onPostChange = () => {
+        let textAreaValue = refTextArea.current.value;
+        props.updatePostText(textAreaValue);
     }
 
     return <div className={s.content}>
@@ -17,14 +21,14 @@ const MyPosts = (props) => {
             My posts
         </div>
 
-        <textarea ref={refTextArea} placeholder="Type something"/>
+        <textarea onChange={onPostChange} ref={refTextArea} value={props.profilePage.postTypingText}/>
         <div>
             <button onClick={addPostButton}>Add post</button>
             <button>Remove</button>
         </div>
 
         <div className={s.posts}>
-            {props.postsDataBase.map(elem => <Post message={elem.text} like={elem.like}/>)}
+            {props.profilePage.postsDataBase.map(elem => <Post message={elem.text} like={elem.like}/>)}
         </div>
 
     </div>
