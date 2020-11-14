@@ -1,7 +1,7 @@
 import React from 'react';
 
 let store = {
-    _state : {
+    _state: {
         dialogsPage: {
             dialogsNamesData: [
                 {id: 1, name: 'Nikita', avatar: 'https://avas.at.ua/_ph/45/1/469869713.jpg?1603712491'},
@@ -28,15 +28,21 @@ let store = {
         }
     },
 
-    getState(){
-        return this._state;
-    },
-
     _callSubscriber() {
         console.log("")
     },
 
-    addToPostsDataBase(){
+
+    getState() {
+        return this._state;
+    },
+
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
+
+
+    addToPostsDataBase() {
         let newPost = {
             id: 3,
             text: this._state.profilePage.postTypingText,
@@ -47,15 +53,28 @@ let store = {
         this._callSubscriber(this._state);
     },
 
-    updatePostText(typetext){
-        this._state.profilePage.postTypingText = typetext;
-        debugger;
+    updatePostText(typingText) {
+        this._state.profilePage.postTypingText = typingText;
         this._callSubscriber(this._state);
     },
 
-    subscribe(observer){
-        this._callSubscriber = observer;
+    dispatch(action) {
+
+        if (action.type === "UPD-TYPING-TEXT") {
+            this._state.profilePage.postTypingText = action.typingText;
+            this._callSubscriber(this._state);
+        } else if (action.type === "ADD-POST") {
+            let newPost = {
+                id: 3,
+                text: this._state.profilePage.postTypingText,
+                like: 0
+            };
+            this._state.profilePage.postsDataBase.push(newPost);
+            this._state.profilePage.postTypingText = '';//после добавления поста, очищает textarea
+            this._callSubscriber(this._state);
+        }
     }
+
 }
 
 window.store = store;

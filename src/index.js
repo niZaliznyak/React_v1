@@ -8,8 +8,7 @@ import App from "./App";
 let reRenderEntireTree = (state) => {
     ReactDOM.render(<BrowserRouter>
         <App state={state}
-             addToPostsDataBase={store.addToPostsDataBase.bind(store)}
-             updatePostText={store.updatePostText.bind(store)}/>
+             dispatch={store.dispatch.bind(store)}/>
     </BrowserRouter>, document.getElementById('root'));
 };
 

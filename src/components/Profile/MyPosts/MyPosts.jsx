@@ -4,11 +4,15 @@ import Post from './Post/Post';
 
 const MyPosts = (props) => {
 
-    const refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
+    let refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
 
-    const onPostChange = () => {
+    let onPostChange = () => {
         let postTextArea = refTextArea.current.value;
-        props.updatePostText(postTextArea);
+        props.dispatch({type: "UPD-TYPING-TEXT", typingText: postTextArea});
+    }
+
+    let addToPostsDataBase = () => {
+        props.dispatch({type: "ADD-POST"})
     }
 
     return <div className={s.content}>
@@ -18,7 +22,7 @@ const MyPosts = (props) => {
 
         <textarea onChange={onPostChange} ref={refTextArea} value={props.profilePage.postTypingText}/>
         <div>
-            <button onClick={props.addToPostsDataBase}>Add post</button>
+            <button onClick={addToPostsDataBase}>Add post</button>
             <button>Remove</button>
         </div>
 
