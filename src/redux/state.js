@@ -1,5 +1,8 @@
 import React from 'react';
 
+const UPD_TYPING_TEXT = "UPD_TYPING_TEXT";
+const ADD_POST = "ADD_POST";
+
 let store = {
     _state: {
         dialogsPage: {
@@ -60,10 +63,10 @@ let store = {
 
     dispatch(action) {
 
-        if (action.type === "UPD-TYPING-TEXT") {
+        if (action.type === UPD_TYPING_TEXT) {
             this._state.profilePage.postTypingText = action.typingText;
             this._callSubscriber(this._state);
-        } else if (action.type === "ADD-POST") {
+        } else if (action.type === ADD_POST) {
             let newPost = {
                 id: 3,
                 text: this._state.profilePage.postTypingText,
@@ -75,6 +78,21 @@ let store = {
         }
     }
 
+}
+
+export const addPostActionCreator = () => {
+
+    return {
+        type: ADD_POST
+    }
+}
+
+export const updTypingTextActionCreator = (text) => {
+
+    return {
+        type: UPD_TYPING_TEXT,
+        typingText: text
+    }
 }
 
 window.store = store;
