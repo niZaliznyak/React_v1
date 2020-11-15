@@ -2,15 +2,21 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import ChatItem from "./ChatItem/ChatItem";
-
-const refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
-
-const sendMessageButton = () => { //функция которая будет привязана к кнопке
-    let textAreaValue = refTextArea.current.value;
-    alert(textAreaValue);
-}
+import {sendMessageActionCreator, updTypingMessageActionCreator} from "../../redux/state";
 
 const Dialogs = (props) => {
+    let refTextArea = React.createRef();
+
+    let sendMessageButton = () => {
+        let action = sendMessageActionCreator();
+        props.dispatch(action);
+    }
+    let onMessageChange = () => {
+        let textAreaValue = refTextArea.current.value;
+        let action = updTypingMessageActionCreator(textAreaValue);
+        props.dispatch(action);
+    }
+
     return (
         <div className={s.dialogsWrapper}>
             <div className={s.dialogsNamesWindow}>
@@ -21,7 +27,7 @@ const Dialogs = (props) => {
             <div className={s.chatWindow}>
                 {props.dialogsPage.messageDataBase.map(elem => <ChatItem message={elem.text} sender={elem.sender}/>)}
                 <div>
-                    <textarea ref={refTextArea} placeholder="Write message..."/>
+                    <textarea onChange={onMessageChange} ref={refTextArea} placeholder="Write message..."/>
                     <button onClick={sendMessageButton}>Send</button>
                 </div>
             </div>
