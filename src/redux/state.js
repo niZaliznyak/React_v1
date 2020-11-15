@@ -26,9 +26,9 @@ let store = {
 
         profilePage: {
             postsDataBase: [
-                {id: 0, text: 'Hello my friends!', like: 25},
-                {id: 1, text: 'I learn react', like: 13},
-                {id: 2, text: 'Far far away...', like: 20},
+                {id: 1, text: 'Hello my friends!', like: 25},
+                {id: 2, text: 'I learn react', like: 13},
+                {id: 3, text: 'Far far away...', like: 20},
             ],
             postTypingText: ""
         }
@@ -53,55 +53,58 @@ let store = {
         if (action.type === UPD_TYPING_POST) {
             this._state.profilePage.postTypingText = action.typingText;
             this._callSubscriber(this._state);
-        } else if (action.type === ADD_POST) {
+        }
+        else if (action.type === ADD_POST) {
             let newPost = {
                 id: 3,
                 text: this._state.profilePage.postTypingText,
                 like: 0
             };
             this._state.profilePage.postsDataBase.push(newPost);
-            this._state.profilePage.postTypingText = '';//после добавления поста, очищает textarea
+            this._state.profilePage.postTypingText = '';
             this._callSubscriber(this._state);
-        } else if (action.type === UPD_TYPING_MESSAGE) {
+        }
+        else if (action.type === UPD_TYPING_MESSAGE) {
             this._state.dialogsPage.messageTypingText = action.typingText;
             this._callSubscriber(this._state);
-        } else if (action.type === ADD_MESSAGE) {
+        }
+        else if (action.type === ADD_MESSAGE) {
             let newMessage = {
-                id: 1,
+                id: 6,
                 sender: false,
                 text: this._state.dialogsPage.messageTypingText
             };
             this._state.dialogsPage.messageDataBase.push(newMessage);
-            this._state.profilePage.postTypingText = '';//после добавления поста, очищает textarea
+            this._state.profilePage.postTypingText = '';
             this._callSubscriber(this._state);
         }
     }
 }
 
-
-export const addPostActionCreator = () => {
+//post Creators
+export const addPostCreator = () => {
 
     return {
         type: ADD_POST
     }
 }
 
-export const updTypingPostActionCreator = (text) => {
+export const updTypingPostCreator = (text) => {
 
     return {
         type: UPD_TYPING_POST,
         typingText: text
     }
 }
-
-export const sendMessageActionCreator = () => {
+//chat Creators
+export const sendMessageCreator = () => {
 
     return {
         type: ADD_MESSAGE
     }
 }
 
-export const updTypingMessageActionCreator = (text) => {
+export const updTypingMessageCreator = (text) => {
 
     return {
         type: UPD_TYPING_MESSAGE,

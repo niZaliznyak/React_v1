@@ -2,18 +2,18 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import ChatItem from "./ChatItem/ChatItem";
-import {sendMessageActionCreator, updTypingMessageActionCreator} from "../../redux/state";
+import {sendMessageCreator, updTypingMessageCreator} from "../../redux/state";
 
 const Dialogs = (props) => {
     let refTextArea = React.createRef();
 
     let sendMessageButton = () => {
-        let action = sendMessageActionCreator();
+        let action = sendMessageCreator();
         props.dispatch(action);
     }
     let onMessageChange = () => {
         let textAreaValue = refTextArea.current.value;
-        let action = updTypingMessageActionCreator(textAreaValue);
+        let action = updTypingMessageCreator(textAreaValue);
         props.dispatch(action);
     }
 

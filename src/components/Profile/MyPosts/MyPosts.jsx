@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {addPostActionCreator, updTypingPostActionCreator} from "../../../redux/state";
+import {addPostCreator, updTypingPostCreator} from "../../../redux/state";
 
 
 
@@ -11,12 +11,12 @@ const MyPosts = (props) => {
 
     let onPostChange = () => {
         let postTextArea = refTextArea.current.value;
-        let action = updTypingPostActionCreator(postTextArea);
+        let action = updTypingPostCreator(postTextArea);
         props.dispatch(action);
     }
 
     let addToPostsDataBase = () => {
-        let action = addPostActionCreator();
+        let action = addPostCreator();
         props.dispatch(action);
     }
 
