@@ -1,7 +1,17 @@
 const UPD_TYPING_POST = "UPD_TYPING_POST";
 const ADD_POST = "ADD_POST";
 
-const profileReducer = (state, action) => {
+let initialState = {
+    postsDataBase: [
+        {id: 1, text: 'Hello my friends!', like: 25},
+        {id: 2, text: 'I learn react', like: 13},
+        {id: 3, text: 'Far far away...', like: 20},
+    ],
+    postTypingText: ""
+}
+
+
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPD_TYPING_POST:
             state.postTypingText = action.typingText;
