@@ -1,4 +1,6 @@
 import React from 'react';
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
 
 const UPD_TYPING_POST = "UPD_TYPING_POST";
 const ADD_POST = "ADD_POST";
@@ -49,35 +51,9 @@ let store = {
 
 
     dispatch(action) {
-
-        if (action.type === UPD_TYPING_POST) {
-            this._state.profilePage.postTypingText = action.typingText;
-            this._callSubscriber(this._state);
-        }
-        else if (action.type === ADD_POST) {
-            let newPost = {
-                id: 3,
-                text: this._state.profilePage.postTypingText,
-                like: 0
-            };
-            this._state.profilePage.postsDataBase.push(newPost);
-            this._state.profilePage.postTypingText = '';
-            this._callSubscriber(this._state);
-        }
-        else if (action.type === UPD_TYPING_MESSAGE) {
-            this._state.dialogsPage.messageTypingText = action.typingText;
-            this._callSubscriber(this._state);
-        }
-        else if (action.type === ADD_MESSAGE) {
-            let newMessage = {
-                id: 6,
-                sender: false,
-                text: this._state.dialogsPage.messageTypingText
-            };
-            this._state.dialogsPage.messageDataBase.push(newMessage);
-            this._state.profilePage.postTypingText = '';
-            this._callSubscriber(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._callSubscriber(this._state);
     }
 }
 
