@@ -51,7 +51,7 @@ let store = {
         this._callSubscriber(this._state);
     }
 }
-
+//test
 window.store = store;
 export default store;
 
