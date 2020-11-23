@@ -2,11 +2,6 @@ import React from 'react';
 import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 
-const UPD_TYPING_POST = "UPD_TYPING_POST";
-const ADD_POST = "ADD_POST";
-const UPD_TYPING_MESSAGE = "UPD_TYPING_MESSAGE";
-const ADD_MESSAGE = 'ADD_MESSAGE';
-
 let store = {
     _state: {
         dialogsPage: {
@@ -56,10 +51,6 @@ let store = {
         this._callSubscriber(this._state);
     }
 }
-
-
-
-
 
 window.store = store;
 export default store;
