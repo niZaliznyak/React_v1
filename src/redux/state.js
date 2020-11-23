@@ -57,36 +57,8 @@ let store = {
     }
 }
 
-//post Creators
-export const addPostCreator = () => {
 
-    return {
-        type: ADD_POST
-    }
-}
 
-export const updTypingPostCreator = (text) => {
-
-    return {
-        type: UPD_TYPING_POST,
-        typingText: text
-    }
-}
-//chat Creators
-export const sendMessageCreator = () => {
-
-    return {
-        type: ADD_MESSAGE
-    }
-}
-
-export const updTypingMessageCreator = (text) => {
-
-    return {
-        type: UPD_TYPING_MESSAGE,
-        typingText: text
-    }
-}
 
 
 window.store = store;

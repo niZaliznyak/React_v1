@@ -23,4 +23,20 @@ const profileReducer = (state, action) => {
 
 }
 
+//post Creators
+export const addPostCreator = () => {
+
+    return {
+        type: ADD_POST
+    }
+}
+
+export const updTypingPostCreator = (text) => {
+
+    return {
+        type: UPD_TYPING_POST,
+        typingText: text
+    }
+}
+
 export default profileReducer;

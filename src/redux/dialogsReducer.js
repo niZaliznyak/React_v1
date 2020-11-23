@@ -23,4 +23,20 @@ const dialogsReducer = (state, action) => {
 
 }
 
+//chat Creators
+export const sendMessageCreator = () => {
+
+    return {
+        type: ADD_MESSAGE
+    }
+}
+
+export const updTypingMessageCreator = (text) => {
+
+    return {
+        type: UPD_TYPING_MESSAGE,
+        typingText: text
+    }
+}
+
 export default dialogsReducer;
