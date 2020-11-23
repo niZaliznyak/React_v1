@@ -5,6 +5,7 @@ import ChatItem from "./ChatItem/ChatItem";
 import {sendMessageCreator, updTypingMessageCreator} from "../../redux/dialogsReducer";
 
 const Dialogs = (props) => {
+
     let refTextArea = React.createRef();
 
     let sendMessageButton = () => {
@@ -21,13 +22,13 @@ const Dialogs = (props) => {
         <div className={s.dialogsWrapper}>
             <div className={s.dialogsNamesWindow}>
                 {props.dialogsPage.dialogsNamesData.map(elem => <DialogItem id={elem.id} chatName={elem.name}
-                                                                      avatar={elem.avatar}/>)}
+                                                                            avatar={elem.avatar}/>)}
             </div>
 
             <div className={s.chatWindow}>
                 {props.dialogsPage.messageDataBase.map(elem => <ChatItem message={elem.text} sender={elem.sender}/>)}
                 <div>
-                    <textarea onChange={onMessageChange} ref={refTextArea} placeholder="Write message..."/>
+                    <textarea onChange={onMessageChange} ref={refTextArea} value={props.dialogsPage.messageTypingText}/>
                     <button onClick={sendMessageButton}>Send</button>
                 </div>
             </div>

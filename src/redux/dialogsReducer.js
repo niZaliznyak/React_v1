@@ -14,7 +14,7 @@ const dialogsReducer = (state, action) => {
                 text: state.messageTypingText
             };
             state.messageDataBase.push(newMessage);
-            state.messageTypingText = "";
+            state.messageTypingText = '';
             return state;
 
         default : // если ни один из action.type не подходит
