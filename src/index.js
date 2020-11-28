@@ -7,10 +7,9 @@ import App from "./App";
 
 let reRenderEntireTree = (state) => {
     ReactDOM.render(<BrowserRouter>
-        <App state={state}
-             dispatch={store.dispatch.bind(store)}/>
+        <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
     </BrowserRouter>, document.getElementById('root'));
-};
+}; //bind позволяет при использовании this. ссылаться на свойства оригинального объекта, а не свойства объекта которым будет вызвана.
 
 reRenderEntireTree(store.getState());
 

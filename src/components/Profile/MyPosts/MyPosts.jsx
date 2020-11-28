@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {addPostCreator, updTypingPostCreator} from "../../../redux/profileReducer";
 
 
 
@@ -10,14 +9,12 @@ const MyPosts = (props) => {
     let refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
 
     let onPostChange = () => {
-        let postTextArea = refTextArea.current.value;
-        let action = updTypingPostCreator(postTextArea);
-        props.dispatch(action);
+        let postTextValue = refTextArea.current.value;
+        props.updTypingPost(postTextValue);
     }
 
     let addToPostsDataBase = () => {
-        let action = addPostCreator();
-        props.dispatch(action);
+        props.addPost();
     }
 
     return <div className={s.content}>
