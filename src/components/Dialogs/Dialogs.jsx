@@ -2,22 +2,19 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import ChatItem from "./ChatItem/ChatItem";
-import {sendMessageCreator, updTypingMessageCreator} from "../../redux/dialogsReducer";
 
 const Dialogs = (props) => {
 
     let refTextArea = React.createRef();
 
     let sendMessageButton = () => {
-        let action = sendMessageCreator();
-        props.dispatch(action);
+        props.sendMessage();
     }
     let onMessageChange = () => {
-        let textAreaValue = refTextArea.current.value;
-        let action = updTypingMessageCreator(textAreaValue);
-        props.dispatch(action);
+        let messageTextValue = refTextArea.current.value;
+        props.textChange(messageTextValue);
     }
-
+    debugger;
     return (
         <div className={s.dialogsWrapper}>
             <div className={s.dialogsNamesWindow}>
