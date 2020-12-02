@@ -6,19 +6,21 @@ import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import StoreContext from "./StoreContext";
 
-let reRenderEntireTree = (state) => {
+let reRenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
+
             <StoreContext.Provider value={store}>
                 <App />
             </StoreContext.Provider>
+
         </BrowserRouter>, document.getElementById('root'));
 }; //bind позволяет при использовании this. ссылаться на свойства оригинального объекта, а не свойства объекта которым будет вызвана.
 
-reRenderEntireTree(store.getState());
+reRenderEntireTree();
 
 store.subscribe(() => {
-    reRenderEntireTree(store.getState());
+    reRenderEntireTree();
 });
 
 // If you want your app to work offline and load faster, you can change
