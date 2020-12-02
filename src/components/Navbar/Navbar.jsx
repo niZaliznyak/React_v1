@@ -2,8 +2,9 @@ import React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
 import FriendsQuickPanel from "./FriendsQuickPanel/FriendsQuickPanel";
+import StoreContext from "../../StoreContext";
 
-const Navbar = (props) => {
+const Navbar = () => {
     return <nav className={s.nav}>
 
         <ul>
@@ -18,7 +19,11 @@ const Navbar = (props) => {
             </li>
         </ul>
 
-        <FriendsQuickPanel dialogsNamesData={props.state.dialogsPage.dialogsNamesData}/>
+        <StoreContext.Consumer>
+            {
+                (store) => <FriendsQuickPanel dialogsNamesData={store.getState().dialogsPage.dialogsNamesData}/>
+            }
+        </StoreContext.Consumer>
 
     </nav>
 }

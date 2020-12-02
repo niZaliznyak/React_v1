@@ -1,23 +1,31 @@
 import React from 'react';
 import {sendMessageCreator, updTypingMessageCreator} from "../../redux/dialogsReducer";
 import Dialogs from "./Dialogs";
+import StoreContext from "../../StoreContext";
 
-const DialogsContainer = (props) => {
-
-    let sendMessage = () => {
-        props.store.dispatch(sendMessageCreator());
-    }
-    let textChange = (text) => {
-        let action = updTypingMessageCreator(text);
-        props.store.dispatch(action);
-    }
+const DialogsContainer = () => {
 
     return (
-        <Dialogs sendMessage={sendMessage} textChange={textChange}
-                 dialogsPage={props.store.getState().dialogsPage}/>
+        <StoreContext.Consumer>
+            {
+                (store) => {
+                    let sendMessage = () => {
+                        store.dispatch(sendMessageCreator());
+                    }
+                    let textChange = (text) => {
+                        let action = updTypingMessageCreator(text);
+                        store.dispatch(action);
+                    }
+
+                    return <Dialogs sendMessage={sendMessage} textChange={textChange}
+                                    dialogsPage={store.getState().dialogsPage}/>
+                }
+            }
+        </StoreContext.Consumer>
     );
 }
 
+export default DialogsContainer;
 /*
 тоже самое, только тут разметка занесена в переменные
 return (
@@ -37,4 +45,3 @@ return (
 */
 
 
-export default DialogsContainer;

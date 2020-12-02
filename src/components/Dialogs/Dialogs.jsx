@@ -14,7 +14,7 @@ const Dialogs = (props) => {
         let messageTextValue = refTextArea.current.value;
         props.textChange(messageTextValue);
     }
-    debugger;
+
     return (
         <div className={s.dialogsWrapper}>
             <div className={s.dialogsNamesWindow}>

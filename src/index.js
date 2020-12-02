@@ -4,11 +4,15 @@ import store from "./redux/reduxStore";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
+import StoreContext from "./StoreContext";
 
 let reRenderEntireTree = (state) => {
-    ReactDOM.render(<BrowserRouter>
-        <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
-    </BrowserRouter>, document.getElementById('root'));
+    ReactDOM.render(
+        <BrowserRouter>
+            <StoreContext.Provider value={store}>
+                <App />
+            </StoreContext.Provider>
+        </BrowserRouter>, document.getElementById('root'));
 }; //bind позволяет при использовании this. ссылаться на свойства оригинального объекта, а не свойства объекта которым будет вызвана.
 
 reRenderEntireTree(store.getState());

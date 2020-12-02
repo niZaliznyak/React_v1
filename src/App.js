@@ -7,15 +7,15 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Friends from "./components/Friends/Friends";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-const App = (props) => {
+const App = () => {
     return (
         <div className='app-wrapper'>
-            <Header/>
-            <Navbar state={props.state}/>
+            <Header />
+            <Navbar />
             <div className='app-wrapper-content'>
-                <Route path="/dialogs" render={() => <DialogsContainer store={props.store}/>}/>
-                <Route path="/profile" render={() => <Profile store={props.store}/>}/>
-                <Route path="/friends" render={() => <Friends state={props.state}/>}/>
+                <Route path="/dialogs" render={() => <DialogsContainer />}/>
+                <Route path="/profile" render={() => <Profile />}/>
+                <Route path="/friends" render={() => <Friends />}/>
             </div>
         </div>
     );
