@@ -3,6 +3,7 @@ import s from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
 import FriendsQuickPanel from "./FriendsQuickPanel/FriendsQuickPanel";
 import StoreContext from "../../StoreContext";
+import FriendsQuickPanelContainer from "./FriendsQuickPanel/FriendsQuickPanelContainer";
 
 const Navbar = () => {
     return <nav className={s.nav}>
@@ -19,11 +20,7 @@ const Navbar = () => {
             </li>
         </ul>
 
-        <StoreContext.Consumer>
-            {
-                (store) => <FriendsQuickPanel dialogsNamesData={store.getState().dialogsPage.dialogsNamesData}/>
-            }
-        </StoreContext.Consumer>
+        <FriendsQuickPanelContainer/>
 
     </nav>
 }

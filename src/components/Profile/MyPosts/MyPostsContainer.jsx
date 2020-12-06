@@ -1,31 +1,25 @@
 import React from 'react';
 import {addPostCreator, updTypingPostCreator} from "../../../redux/profileReducer";
 import MyPosts from "./MyPosts";
-import StoreContext from "../../../StoreContext";
+import {connect} from "react-redux";
 
-
-const MyPostsContainer = () => {
-
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
-                    let updTypingPost = (text) => {
-                        let action = updTypingPostCreator(text);
-                        store.dispatch(action);
-                    }
-
-                    let addPost = () => {
-                        store.dispatch(addPostCreator());
-                    }
-
-                    return <MyPosts updTypingPost={updTypingPost} addPost={addPost}
-                                    profilePage={store.getState().profilePage}/>
-                }
-            }
-        </StoreContext.Consumer>
-    );
-
+let mapStateToProps = (state) => {
+    return {
+        profilePage: state.profilePage
+    }
 }
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addPost: () => {
+            dispatch(addPostCreator());
+        },
+        updTypingPost: (text) => {
+            let action = updTypingPostCreator(text);
+            dispatch(action);
+        }
+    }
+}
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 export default MyPostsContainer;
