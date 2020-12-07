@@ -1,8 +1,6 @@
 import React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
-import FriendsQuickPanel from "./FriendsQuickPanel/FriendsQuickPanel";
-import StoreContext from "../../StoreContext";
 import FriendsQuickPanelContainer from "./FriendsQuickPanel/FriendsQuickPanelContainer";
 
 const Navbar = () => {
