@@ -13,23 +13,24 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPD_TYPING_POST: {
-            let tempState = {...state};
-            tempState.postTypingText = action.typingText;
-            return tempState;
-        }
-        case ADD_POST: {
+        case UPD_TYPING_POST:
+            return {
+                ...state,
+                postTypingText: action.typingText
+            };
+
+        case ADD_POST:
             let newPost = {
-                id: 3,
+                id: 4,
                 text: state.postTypingText,
                 like: 0
+            }
+            return {
+                ...state,
+                postsDataBase: [...state.postsDataBase, newPost],
+                postTypingText: ''
             };
-            let tempState = {...state};
-            tempState.postsDataBase = [...state.postsDataBase];
-            tempState.postsDataBase.push(newPost);
-            tempState.postTypingText = '';
-            return tempState;
-        }
+
         default: // если ни один из action.type не подходит. Default необходим
             return state;
     }

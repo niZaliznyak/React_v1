@@ -28,13 +28,14 @@ const dialogsReducer = (state = initialState, action) => {
             };
 
         case ADD_MESSAGE:
+            let newMessage = {
+                id: 6,
+                sender: false,
+                text: state.messageTypingText
+            };
             return {
                 ...state,
-                messageDataBase: [...state.messageDataBase, {
-                    id: 6,
-                    sender: false,
-                    text: state.messageTypingText
-                }],
+                messageDataBase: [...state.messageDataBase, newMessage],
                 messageTypingText: ""
             };
 
