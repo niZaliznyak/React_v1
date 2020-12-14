@@ -19,11 +19,12 @@ const Dialogs = (props) => {
         <div className={s.dialogsWrapper}>
             <div className={s.dialogsNamesWindow}>
                 {props.dialogsPage.dialogsNamesData.map(elem => <DialogItem id={elem.id} chatName={elem.name}
-                                                                            avatar={elem.avatar}/>)}
+                                                                            avatar={elem.avatar} key={elem.id}/>)}
             </div>
 
             <div className={s.chatWindow}>
-                {props.dialogsPage.messageDataBase.map(elem => <ChatItem message={elem.text} sender={elem.sender}/>)}
+                {props.dialogsPage.messageDataBase.map(elem => <ChatItem message={elem.text} sender={elem.sender}
+                                                                         key={elem.id}/>)}
                 <div>
                     <textarea onChange={onMessageChange} ref={refTextArea} value={props.dialogsPage.messageTypingText}/>
                     <button onClick={sendMessageButton}>Send</button>

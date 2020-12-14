@@ -19,20 +19,24 @@ let initialState = {
 }
 
 const dialogsReducer = (state = initialState, action) => {
+
     switch (action.type) {
         case UPD_TYPING_MESSAGE:
-            state.messageTypingText = action.typingText;
-            return state;
+            return {
+                ...state,
+                messageTypingText: action.typingText
+            };
 
         case ADD_MESSAGE:
-            let newMessage = {
-                id: 6,
-                sender: false,
-                text: state.messageTypingText
+            return {
+                ...state,
+                messageDataBase: [...state.messageDataBase, {
+                    id: 6,
+                    sender: false,
+                    text: state.messageTypingText
+                }],
+                messageTypingText: ""
             };
-            state.messageDataBase.push(newMessage);
-            state.messageTypingText = '';
-            return state;
 
         default : // если ни один из action.type не подходит
             return state;

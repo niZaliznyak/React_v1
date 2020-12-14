@@ -7,7 +7,7 @@ const FriendsQuickPanel = (props) => {
     return (
         <div className={s.FriendsQuickPanel}>
             {props.dialogsNamesData.map(elem => <FriendItem avatar={elem.avatar}
-                                                            name={elem.name}/>)}
+                                                            name={elem.name} key={elem.id}/>)}
         </div>
     )
 }

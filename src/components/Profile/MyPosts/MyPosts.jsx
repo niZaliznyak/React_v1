@@ -29,7 +29,7 @@ const MyPosts = (props) => {
         </div>
 
         <div className={s.posts}>
-            {props.profilePage.postsDataBase.map(elem => <Post message={elem.text} like={elem.like}/>)}
+            {props.profilePage.postsDataBase.map(elem => <Post message={elem.text} key={elem.id} like={elem.like}/>)}
         </div>
 
     </div>
