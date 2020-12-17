@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Friends = () => {
+const Users = () => {
     return <div>
         Friends
     </div>
 
 }
 
-export default Friends;
+export default Users;
