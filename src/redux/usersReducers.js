@@ -1,4 +1,4 @@
-const SHOW_MORE = "SHOW_MORE";
+const SET_USERS = "SET_USERS";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 
@@ -14,7 +14,7 @@ let initialState = {
         },
         {
             id: 1,
-            follow: false,
+            follow: true,
             firstName: "Alex",
             lastName: "Power",
             location: {country: "Russia", city: "Moscow"},
@@ -55,8 +55,11 @@ const usersReducers = (state = initialState, action) => {
                 })
             };
 
-        case SHOW_MORE:
-            return state;
+        case SET_USERS:
+            return {
+                ...state,
+                usersData: [...state.usersData, ...action.users]
+            };
 
         default:
             return state;
@@ -66,7 +69,7 @@ const usersReducers = (state = initialState, action) => {
 export const followAC = (userID) => ({type: FOLLOW, id: userID});
 //export const followAC = (userID) => ({type: FOLLOW, userID}); возможно нужно так
 export const unfollowAC = (userID) => ({type: UNFOLLOW, id: userID});
-export const showMore = () => ({type: SHOW_MORE});
+export const setUsersAC = (users) => ({type: SET_USERS, users});
 
 
 export default usersReducers;
