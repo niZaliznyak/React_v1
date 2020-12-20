@@ -3,32 +3,7 @@ const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 
 let initialState = {
-    usersData: [
-        {
-            id: 0,
-            follow: true,
-            firstName: "Egor",
-            lastName: "Bobrov",
-            location: {country: "Ukraine", city: "Kyiv"},
-            avatar: "url"
-        },
-        {
-            id: 1,
-            follow: true,
-            firstName: "Alex",
-            lastName: "Power",
-            location: {country: "Russia", city: "Moscow"},
-            avatar: "url"
-        },
-        {
-            id: 2,
-            follow: true,
-            firstName: "Niko",
-            lastName: "Belych",
-            location: {country: "Poland", city: "Wroclav"},
-            avatar: "url"
-        },
-    ]
+    usersData: []
 }
 
 const usersReducers = (state = initialState, action) => {
