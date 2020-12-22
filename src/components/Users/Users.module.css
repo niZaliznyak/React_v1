@@ -1,0 +1,11 @@
+.userPhoto {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.userElement {
+    border: 1px double black;
+    margin: 5px;
+    padding: 5px;
+}

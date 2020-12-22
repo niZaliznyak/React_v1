@@ -1,54 +1,27 @@
 import React from 'react';
+import styles from "./Users.module.css";
 import * as axios from "axios";
+import AvatarIMG from '../../assets/img/simple-avatar.png';
 
 const Users = (props) => {
-    if(props.usersData.length === 0) {
-
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            console.log(response.data);
-        });
-
-        props.setUsers([
-            {
-                id: 0,
-                follow: true,
-                firstName: "Egor",
-                lastName: "Bobrov",
-                location: {country: "Ukraine", city: "Kyiv"},
-                avatar: "url"
-            },
-            {
-                id: 1,
-                follow: true,
-                firstName: "Alex",
-                lastName: "Power",
-                location: {country: "Russia", city: "Moscow"},
-                avatar: "url"
-            },
-            {
-                id: 2,
-                follow: true,
-                firstName: "Niko",
-                lastName: "Belych",
-                location: {country: "Poland", city: "Wroclav"},
-                avatar: "url"
-            }
-        ])
+    let showUsers = () => {
+        if (props.usersData.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                props.setUsers(response.data.items);
+            });
+        }
     }
 
     return <div>
+        <button onClick={showUsers}>Show users</button>
         {props.usersData.map(elem => (
-                <div key={elem.id}>
-                    <span>
-                        <div>avatar</div>
+                <div className={styles.userElement} key={elem.id}>
+                        <div><img alt="userPhoto" className={styles.userPhoto} src={AvatarIMG}></img></div>
+                        <div>Nickname: {elem.name}; id: {elem.id}; status: {elem.status}</div>
                         <div>{elem.follow ?
                             <button onClick={ () => {props.unfollow(elem.id)} }>unfollow</button>
                             : <button onClick={ () => {props.follow(elem.id)} }>follow</button>
                         }</div>
-                    </span>
-                    <span>
-                    {elem.firstName} {elem.lastName} from {elem.location.country}, {elem.location.city}
-                    </span>
                 </div>
             )
         )}
