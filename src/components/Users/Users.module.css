@@ -9,3 +9,8 @@
     margin: 5px;
     padding: 5px;
 }
+
+.selectedPage {
+    color: orange;
+    font-weight: bold;
+}

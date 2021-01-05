@@ -3,7 +3,10 @@ const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 
 let initialState = {
-    usersData: []
+    usersData: [],
+    pageSize : 5,
+    totalUsersCount : 21,
+    currentPage: 1
 }
 
 const usersReducers = (state = initialState, action) => {
