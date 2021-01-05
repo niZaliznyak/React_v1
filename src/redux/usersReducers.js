@@ -1,11 +1,12 @@
 const SET_USERS = "SET_USERS";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
 let initialState = {
     usersData: [],
     pageSize : 5,
-    totalUsersCount : 21,
+    totalUsersCount : 30,
     currentPage: 1
 }
 
@@ -36,8 +37,14 @@ const usersReducers = (state = initialState, action) => {
         case SET_USERS:
             return {
                 ...state,
-                usersData: [...state.usersData, ...action.users]
+                usersData: action.users
             };
+
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.currentPage
+            }
 
         default:
             return state;
@@ -45,9 +52,10 @@ const usersReducers = (state = initialState, action) => {
 }
 
 export const followAC = (userID) => ({type: FOLLOW, id: userID});
-//export const followAC = (userID) => ({type: FOLLOW, userID}); возможно нужно так
+//export const followAC = (userID) => ({type: FOLLOW, userID}); если свойство объекта имеет тоже имя, что и переменная, то можно писать сразу userID
 export const unfollowAC = (userID) => ({type: UNFOLLOW, id: userID});
 export const setUsersAC = (users) => ({type: SET_USERS, users});
+export const setCurrentPageAC = (pageNumber) => ({type: SET_CURRENT_PAGE, currentPage: pageNumber});
 
 
 export default usersReducers;
