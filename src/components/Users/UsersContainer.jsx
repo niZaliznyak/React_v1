@@ -1,20 +1,22 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {followAC, setCurrentPageAC, setUsersAC, unfollowAC} from "../../redux/usersReducers";
+import {followAC, setCurrentPageAC, setUsersAC, toggleWaitingAC, unfollowAC} from "../../redux/usersReducers";
 import * as axios from "axios";
 import Users from "./Users";
+import Loading from "../Common/Preloader/Loading";
 
 let mapStateToProps = (state) => {
     return {
         usersData: state.usersPage.usersData,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        waitingResponse: state.usersPage.waitingResponse
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
-    return{
+    return {
         follow: (userID) => {
             dispatch(followAC(userID)); // dispatch возвращает результат работы AC
         },
@@ -26,6 +28,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         setCurrentPage: (pageNumber) => {
             dispatch(setCurrentPageAC(pageNumber));
+        },
+        toggleWaiting: (toggle) => {
+            dispatch(toggleWaitingAC(toggle));
         }
     };
 }
@@ -34,26 +39,33 @@ let mapDispatchToProps = (dispatch) => {
 class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
+        this.props.toggleWaiting(true);
         if (this.props.usersData.length === 0) {
             axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+                this.props.toggleWaiting(false);
                 this.props.setUsers(response.data.items);
             });
         }
     }
 
     onPageChange = (pageNumber) => {
+        this.props.toggleWaiting(true);
         this.props.setCurrentPage(pageNumber);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.toggleWaiting(false);
             this.props.setUsers(response.data.items);
         });
     }
 
     render() {
-        return <Users totalUsersCount={this.props.totalUsersCount}
-                      pageSize={this.props.pageSize} currentPage={this.props.currentPage}
-                      usersData={this.props.usersData} follow={this.props.follow} unfollow={this.props.unfollow}
-                      onPageChange={this.onPageChange}
-        />
+        return <>
+            {this.props.waitingResponse ? <Loading/> : null}
+            <Users totalUsersCount={this.props.totalUsersCount}
+                   pageSize={this.props.pageSize} currentPage={this.props.currentPage}
+                   usersData={this.props.usersData} follow={this.props.follow} unfollow={this.props.unfollow}
+                   onPageChange={this.onPageChange}
+            />
+        </>
     }
 }
 
