@@ -58,13 +58,13 @@ const usersReducers = (state = initialState, action) => {
             return state;
     }
 }
-
-export const followAC = (userID) => ({type: FOLLOW, id: userID});
+//action creators:
+export const follow = (userID) => ({type: FOLLOW, id: userID});
 //export const followAC = (userID) => ({type: FOLLOW, userID}); если свойство объекта имеет тоже имя, что и переменная, то можно писать сразу userID
-export const unfollowAC = (userID) => ({type: UNFOLLOW, id: userID});
-export const setUsersAC = (users) => ({type: SET_USERS, users});
-export const setCurrentPageAC = (pageNumber) => ({type: SET_CURRENT_PAGE, currentPage: pageNumber});
-export const toggleWaitingAC = (toggle) => ({type: WAITING_RESPONSE, toggle});
+export const unfollow = (userID) => ({type: UNFOLLOW, id: userID});
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, currentPage: pageNumber});
+export const toggleWaiting = (toggle) => ({type: WAITING_RESPONSE, toggle});
 
 
 export default usersReducers;

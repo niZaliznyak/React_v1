@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {followAC, setCurrentPageAC, setUsersAC, toggleWaitingAC, unfollowAC} from "../../redux/usersReducers";
+import {follow, setCurrentPage, setUsers, toggleWaiting, unfollow} from "../../redux/usersReducers";
 import * as axios from "axios";
 import Users from "./Users";
 import Loading from "../Common/Preloader/Loading";
@@ -15,7 +15,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+/*let mapDispatchToProps = (dispatch) => {
     return {
         follow: (userID) => {
             dispatch(followAC(userID)); // dispatch возвращает результат работы AC
@@ -33,7 +33,7 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(toggleWaitingAC(toggle));
         }
     };
-}
+}*/
 
 //в классовую компоненту не приходят props. Props приходят в уже отрисованый jsx. Поэтому тут обращаемся к пропсам через this.
 class UsersAPIComponent extends React.Component {
@@ -69,6 +69,7 @@ class UsersAPIComponent extends React.Component {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+const UsersContainer = connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, toggleWaiting}
+                        )(UsersAPIComponent);
 
 export default UsersContainer;
