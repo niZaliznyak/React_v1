@@ -13,7 +13,7 @@ let mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         waitingResponse: state.usersPage.waitingResponse
     }
-}
+};
 
 /*let mapDispatchToProps = (dispatch) => {
     return {
@@ -36,7 +36,7 @@ let mapStateToProps = (state) => {
 }*/
 
 //в классовую компоненту не приходят props. Props приходят в уже отрисованый jsx. Поэтому тут обращаемся к пропсам через this.
-class UsersAPIComponent extends React.Component {
+class UsersContainer extends React.Component {
 
     componentDidMount() {
         if (this.props.usersData.length === 0) {
@@ -45,7 +45,8 @@ class UsersAPIComponent extends React.Component {
                 this.props.toggleWaiting(false);
                 this.props.setUsers(response.data.items);
             });
-        };
+        }
+        ;
     }
 
     onPageChange = (pageNumber) => {
@@ -69,7 +70,4 @@ class UsersAPIComponent extends React.Component {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, toggleWaiting}
-                        )(UsersAPIComponent);
-
-export default UsersContainer;
+export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, toggleWaiting})(UsersContainer);

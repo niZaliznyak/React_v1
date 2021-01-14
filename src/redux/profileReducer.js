@@ -1,5 +1,6 @@
 const UPD_TYPING_POST = "UPD_TYPING_POST";
 const ADD_POST = "ADD_POST";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 let initialState = {
     postsDataBase: [
@@ -7,7 +8,8 @@ let initialState = {
         {id: 2, text: 'I learn react', like: 13},
         {id: 3, text: 'Far far away...', like: 20},
     ],
-    postTypingText: ""
+    postTypingText: "",
+    profile: null
 }
 
 
@@ -31,6 +33,12 @@ const profileReducer = (state = initialState, action) => {
                 postTypingText: ''
             };
 
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
+            }
+
         default: // если ни один из action.type не подходит. Default необходим
             return state;
     }
@@ -38,19 +46,8 @@ const profileReducer = (state = initialState, action) => {
 }
 
 //post Creators
-export const addPostCreator = () => {
-
-    return {
-        type: ADD_POST
-    }
-}
-
-export const updTypingPostCreator = (text) => {
-
-    return {
-        type: UPD_TYPING_POST,
-        typingText: text
-    }
-}
+export const addPostCreator = () => ({type: ADD_POST});
+export const updTypingPostCreator = (text) => ({type: UPD_TYPING_POST, typingText: text});
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
 export default profileReducer;
