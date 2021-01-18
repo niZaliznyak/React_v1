@@ -12,7 +12,7 @@ const ProfileInfo = (props) => {
                 src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'/>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.small}/>
-                description about myself
+                {props.profile.userId} {props.profile.fullName} description about myself
             </div>
         </div>
     );
