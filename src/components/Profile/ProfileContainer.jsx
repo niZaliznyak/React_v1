@@ -29,6 +29,9 @@ let mapStateToProps = (state) => ({
     profile: state.profilePage.profile
 });
 
-let withURLDataContainerComponent = withRouter(ProfileContainer); //withRouter берет данные url
+/*
+let withURLDataContainerComponent = withRouter(ProfileContainer); withRouter берет данные url
+export default connect(mapStateToProps, {setUserProfile})(withURLDataContainerComponent)); можно и так
+*/
 
-export default connect(mapStateToProps, {setUserProfile})(withURLDataContainerComponent);
+export default connect(mapStateToProps, {setUserProfile})(withRouter(ProfileContainer));

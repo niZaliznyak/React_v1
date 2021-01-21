@@ -12,7 +12,7 @@ let initialState = {
     waitingResponse: false
 }
 
-const usersReducers = (state = initialState, action) => {
+const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -67,4 +67,4 @@ export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, currentP
 export const toggleWaiting = (toggle) => ({type: WAITING_RESPONSE, toggle});
 
 
-export default usersReducers;
+export default usersReducer;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {follow, setCurrentPage, setUsers, toggleWaiting, unfollow} from "../../redux/usersReducers";
+import {follow, setCurrentPage, setUsers, toggleWaiting, unfollow} from "../../redux/usersReducer";
 import * as axios from "axios";
 import Users from "./Users";
 import Loading from "../Common/Preloader/Loading";
