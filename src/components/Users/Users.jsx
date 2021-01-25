@@ -28,7 +28,7 @@ let Users = (props) => {
                               src={elem.photos.small != null ? elem.photos.small : AvatarIMG}/></div>
                 </NavLink>
                 <div>Nickname: {elem.name}; id: {elem.id}; status: {elem.status}</div>
-                <div>{elem.followed == true ?
+                <div>{elem.followed ?
 
                     <button onClick={() => {
                         axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${elem.id}`, {
