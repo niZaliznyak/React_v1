@@ -38,3 +38,4 @@
 [0105/200437.173:ERROR:exception_snapshot_win.cc(99)] thread ID 3628 not found in process
 [0112/171919.585:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
 [0121/192332.840:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[0123/124106.209:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./Users.module.css";
 import AvatarIMG from '../../assets/img/simple-avatar.png';
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 
 let Users = (props) => {
 
@@ -21,26 +22,48 @@ let Users = (props) => {
         </div>
 
         {props.usersData.map(elem => (
-                <div className={styles.userElement} key={elem.id}>
-                    <NavLink to={`/profile/${elem.id}`}>
+            <div className={styles.userElement} key={elem.id}>
+                <NavLink to={`/profile/${elem.id}`}>
                     <div><img alt="userPhoto" className={styles.userPhoto}
                               src={elem.photos.small != null ? elem.photos.small : AvatarIMG}/></div>
-                    </NavLink>
-                    <div>Nickname: {elem.name}; id: {elem.id}; status: {elem.status}</div>
-                    <div>{elem.follow ?
-                        <button onClick={() => {
-                            props.unfollow(elem.id)
-                        }}>unfollow</button>
+                </NavLink>
+                <div>Nickname: {elem.name}; id: {elem.id}; status: {elem.status}</div>
+                <div>{elem.follow ?
+
+                    <button onClick={() => {
+                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${elem.id}`, {
+                            withCredentials: true,
+                            headers: {
+                                "API-KEY": "b7aec3a8-1b77-41d6-aded-3789221e7d40"
+                            }
+                        }).then(response => {
+                            if (response.data.resultCode == 0) {
+                                props.unfollow(elem.id)
+                            }
+                        });
+
+                    }}>unfollow</button>
+
+
                         : <button onClick={() => {
-                            props.follow(elem.id)
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${elem.id}`, {}, {
+                                withCredentials: true, headers: {
+                                    "API-KEY": "b7aec3a8-1b77-41d6-aded-3789221e7d40"
+                                }
+                            }).then(response => {
+                                if (response.data.resultCode == 0) {
+                                    props.follow(elem.id)
+                                }
+                            });
+
                         }}>follow</button>
                     }</div>
-                </div>
-            )
-        )}
+                    </div>
+                    )
+                    )}
 
-    </div>
+                    </div>
 
-}
+                    }
 
-export default Users;
+                    export default Users;
