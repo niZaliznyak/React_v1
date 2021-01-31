@@ -30,9 +30,8 @@ let Users = (props) => {
                 <div>Nickname: {elem.name}; id: {elem.id}; status: {elem.status}</div>
                 <div>{elem.followed ?
 
-                    <button disabled={props.waitingSubscribe} onClick={() => {
-                        props.toggleSubscribeProgress(true);
-                        debugger;
+                    <button disabled={props.waitingSubscribe.status & props.waitingSubscribe.id == elem.id} onClick={() => {
+                        props.toggleSubscribeProgress(true, elem.id);
                         usersAPI.getUnfollow(elem.id).then(data => {
                             if (data.resultCode == 0) {
                                 props.unfollow(elem.id)
@@ -43,8 +42,8 @@ let Users = (props) => {
                     }}>unfollow</button>
 
 
-                        : <button disabled={props.waitingSubscribe} onClick={() => {
-                        props.toggleSubscribeProgress(true);
+                        : <button disabled={props.waitingSubscribe.status & props.waitingSubscribe.id == elem.id} onClick={() => {
+                        props.toggleSubscribeProgress(true, elem.id);
                         usersAPI.getFollow(elem.id).then(data => {
                                 if (data.resultCode == 0) {
                                     props.follow(elem.id)

@@ -11,7 +11,7 @@ let initialState = {
     totalUsersCount : 30,
     currentPage: 1,
     waitingResponse: false,
-    waitingSubscribe: false
+    waitingSubscribe: {status: false, id : null}
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -58,7 +58,7 @@ const usersReducer = (state = initialState, action) => {
         case WAITING_SUBSCRIBE:
             return {
                 ...state,
-                waitingSubscribe: action.toggle
+                waitingSubscribe: {status: action.toggle, id: action.userID}
             }
 
         default:
@@ -72,7 +72,7 @@ export const unfollow = (userID) => ({type: UNFOLLOW, id: userID});
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, currentPage: pageNumber});
 export const toggleWaiting = (toggle) => ({type: WAITING_RESPONSE, toggle});
-export const toggleSubscribeProgress = (toggle) => ({type: WAITING_SUBSCRIBE, toggle});
+export const toggleSubscribeProgress = (toggle, userID) => ({type: WAITING_SUBSCRIBE, toggle, userID});
 
 
 export default usersReducer;
