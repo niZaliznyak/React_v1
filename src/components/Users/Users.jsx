@@ -2,7 +2,6 @@ import React from 'react';
 import styles from "./Users.module.css";
 import AvatarIMG from '../../assets/img/simple-avatar.png';
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
 import {usersAPI} from "../../api/api";
 
 let Users = (props) => {
@@ -31,21 +30,26 @@ let Users = (props) => {
                 <div>Nickname: {elem.name}; id: {elem.id}; status: {elem.status}</div>
                 <div>{elem.followed ?
 
-                    <button onClick={() => {
+                    <button disabled={props.waitingSubscribe} onClick={() => {
+                        props.toggleSubscribeProgress(true);
+                        debugger;
                         usersAPI.getUnfollow(elem.id).then(data => {
                             if (data.resultCode == 0) {
                                 props.unfollow(elem.id)
                             }
+                            props.toggleSubscribeProgress(false);
                         });
 
                     }}>unfollow</button>
 
 
-                        : <button onClick={() => {
+                        : <button disabled={props.waitingSubscribe} onClick={() => {
+                        props.toggleSubscribeProgress(true);
                         usersAPI.getFollow(elem.id).then(data => {
                                 if (data.resultCode == 0) {
                                     props.follow(elem.id)
                                 }
+                            props.toggleSubscribeProgress(false);
                             });
 
                         }}>follow</button>

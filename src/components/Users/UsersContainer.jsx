@@ -1,6 +1,13 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {follow, setCurrentPage, setUsers, toggleWaiting, unfollow} from "../../redux/usersReducer";
+import {
+    follow,
+    setCurrentPage,
+    setUsers,
+    toggleSubscribeProgress,
+    toggleWaiting,
+    unfollow
+} from "../../redux/usersReducer";
 import Users from "./Users";
 import Loading from "../Common/Preloader/Loading";
 import {usersAPI} from "../../api/api";
@@ -11,7 +18,8 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        waitingResponse: state.usersPage.waitingResponse
+        waitingResponse: state.usersPage.waitingResponse,
+        waitingSubscribe: state.usersPage.waitingSubscribe
     }
 };
 
@@ -65,10 +73,11 @@ class UsersContainer extends React.Component {
             <Users totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize} currentPage={this.props.currentPage}
                    usersData={this.props.usersData} follow={this.props.follow} unfollow={this.props.unfollow}
-                   onPageChange={this.onPageChange}
+                   onPageChange={this.onPageChange} waitingSubscribe={this.props.waitingSubscribe}
+                   toggleSubscribeProgress={this.props.toggleSubscribeProgress}
             />
         </>
     }
 }
 
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, toggleWaiting})(UsersContainer);
+export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, toggleWaiting, toggleSubscribeProgress})(UsersContainer);
