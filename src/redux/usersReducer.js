@@ -67,10 +67,9 @@ const usersReducer = (state = initialState, action) => {
             return state;
     }
 }
-//action creators:
-export const follow = (userID) => ({type: FOLLOW, id: userID});
-//export const followAC = (userID) => ({type: FOLLOW, userID}); если свойство объекта имеет тоже имя, что и переменная, то можно писать сразу userID
-export const unfollow = (userID) => ({type: UNFOLLOW, id: userID});
+
+export const followSuccess = (userID) => ({type: FOLLOW, id: userID});
+export const unfollowSuccess = (userID) => ({type: UNFOLLOW, id: userID});
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, currentPage: pageNumber});
 export const toggleWaiting = (toggle) => ({type: WAITING_RESPONSE, toggle});
@@ -85,6 +84,32 @@ export const getUsers = (currentPage, pageSize) => {
             dispatch(toggleWaiting(false));
             dispatch(setUsers(data.items));
         });
+    }
+}
+
+export const unfollow = (userID) => {
+    return (dispatch) => {
+        dispatch(toggleSubscribeProgress(true, userID));
+        usersAPI.getUnfollow(userID).then(data => {
+            if (data.resultCode == 0) {
+                dispatch(unfollowSuccess(userID));
+            }
+            dispatch(toggleSubscribeProgress(false));
+        });
+
+    }
+}
+
+export const follow = (userID) => {
+    return (dispatch) => {
+        dispatch(toggleSubscribeProgress(true, userID));
+        usersAPI.getFollow(userID).then(data => {
+            if (data.resultCode == 0) {
+                dispatch(followSuccess(userID));
+            }
+            dispatch(toggleSubscribeProgress(false));
+        });
+
     }
 }
 

@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {
     follow, getUsers,
     setCurrentPage,
-    toggleSubscribeProgress,
     unfollow
 } from "../../redux/usersReducer";
 import Users from "./Users";
@@ -45,6 +44,4 @@ class UsersContainer extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, {follow, unfollow,
-    setCurrentPage, toggleSubscribeProgress,
-    getUsers})(UsersContainer);
+export default connect(mapStateToProps, {follow, unfollow, setCurrentPage, getUsers})(UsersContainer);
