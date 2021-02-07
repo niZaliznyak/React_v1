@@ -18,7 +18,7 @@ export const usersAPI = {
             .then(response => response.data);
     },
     getFollow(userID) {
-        return instance.post(`follow/${userID}`, {}) // тут может скрываться ошибка - при методете пост добавляем в свойство пустой объект, зачем хз
+        return instance.post(`follow/${userID}`)
             .then(response => response.data);
     }
 

@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const SET_USERS = "SET_USERS";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -7,11 +9,11 @@ const WAITING_SUBSCRIBE = "WAITING_SUBSCRIBE";
 
 let initialState = {
     usersData: [],
-    pageSize : 5,
-    totalUsersCount : 30,
+    pageSize: 5,
+    totalUsersCount: 30,
     currentPage: 1,
     waitingResponse: false,
-    waitingSubscribe: {status: false, id : null}
+    waitingSubscribe: {status: false, id: null}
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -74,5 +76,16 @@ export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, currentP
 export const toggleWaiting = (toggle) => ({type: WAITING_RESPONSE, toggle});
 export const toggleSubscribeProgress = (toggle, userID) => ({type: WAITING_SUBSCRIBE, toggle, userID});
 
+export const getUsers = (currentPage, pageSize) => {
+    return (dispatch) => {
+
+        dispatch(toggleWaiting(true));
+
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(toggleWaiting(false));
+            dispatch(setUsers(data.items));
+        });
+    }
+}
 
 export default usersReducer;

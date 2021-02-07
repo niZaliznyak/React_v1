@@ -1,16 +1,13 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    follow,
+    follow, getUsers,
     setCurrentPage,
-    setUsers,
     toggleSubscribeProgress,
-    toggleWaiting,
     unfollow
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Loading from "../Common/Preloader/Loading";
-import {usersAPI} from "../../api/api";
 
 let mapStateToProps = (state) => {
     return {
@@ -23,48 +20,16 @@ let mapStateToProps = (state) => {
     }
 };
 
-/*let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userID) => {
-            dispatch(followAC(userID)); // dispatch возвращает результат работы AC
-        },
-        unfollow: (userID) => {
-            dispatch(unfollowAC(userID));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber));
-        },
-        toggleWaiting: (toggle) => {
-            dispatch(toggleWaitingAC(toggle));
-        }
-    };
-}*/
-
 //в классовую компоненту не приходят props. Props приходят в уже отрисованый jsx. Поэтому тут обращаемся к пропсам через this.
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        if (this.props.usersData.length === 0) {
-            this.props.toggleWaiting(true);
-
-            usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-                this.props.toggleWaiting(false);
-                this.props.setUsers(data.items);
-            });
-        }
-        ;
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChange = (pageNumber) => {
-        this.props.toggleWaiting(true);
         this.props.setCurrentPage(pageNumber);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.toggleWaiting(false);
-            this.props.setUsers(data.items);
-        });
+        this.props.getUsers(pageNumber, this.props.pageSize);
     }
 
     render() {
@@ -80,4 +45,6 @@ class UsersContainer extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, toggleWaiting, toggleSubscribeProgress})(UsersContainer);
+export default connect(mapStateToProps, {follow, unfollow,
+    setCurrentPage, toggleSubscribeProgress,
+    getUsers})(UsersContainer);

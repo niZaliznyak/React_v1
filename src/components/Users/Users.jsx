@@ -22,43 +22,45 @@ let Users = (props) => {
         </div>
 
         {props.usersData.map(elem => (
-            <div className={styles.userElement} key={elem.id}>
-                <NavLink to={`/profile/${elem.id}`}>
-                    <div><img alt="userPhoto" className={styles.userPhoto}
-                              src={elem.photos.small != null ? elem.photos.small : AvatarIMG}/></div>
-                </NavLink>
-                <div>Nickname: {elem.name}; id: {elem.id}; status: {elem.status}</div>
-                <div>{elem.followed ?
+                <div className={styles.userElement} key={elem.id}>
+                    <NavLink to={`/profile/${elem.id}`}>
+                        <div><img alt="userPhoto" className={styles.userPhoto}
+                                  src={elem.photos.small != null ? elem.photos.small : AvatarIMG}/></div>
+                    </NavLink>
+                    <div>Nickname: {elem.name}; id: {elem.id}; status: {elem.status}</div>
+                    <div>{elem.followed ?
 
-                    <button disabled={props.waitingSubscribe.status == true && props.waitingSubscribe.id == elem.id} onClick={() => {
-                        props.toggleSubscribeProgress(true, elem.id);
-                        usersAPI.getUnfollow(elem.id).then(data => {
-                            if (data.resultCode == 0) {
-                                props.unfollow(elem.id)
-                            }
-                            props.toggleSubscribeProgress(false);
-                        });
+                        <button disabled={props.waitingSubscribe.status == true && props.waitingSubscribe.id == elem.id}
+                                onClick={() => {
+                                    props.toggleSubscribeProgress(true, elem.id);
+                                    usersAPI.getUnfollow(elem.id).then(data => {
+                                        if (data.resultCode == 0) {
+                                            props.unfollow(elem.id)
+                                        }
+                                        props.toggleSubscribeProgress(false);
+                                    });
 
-                    }}>unfollow</button>
+                                }}>unfollow</button>
 
 
-                        : <button disabled={props.waitingSubscribe.status == true && props.waitingSubscribe.id == elem.id} onClick={() => {
-                        props.toggleSubscribeProgress(true, elem.id);
-                        usersAPI.getFollow(elem.id).then(data => {
-                                if (data.resultCode == 0) {
-                                    props.follow(elem.id)
-                                }
-                            props.toggleSubscribeProgress(false);
-                            });
+                        : <button disabled={props.waitingSubscribe.status == true && props.waitingSubscribe.id == elem.id}
+                                  onClick={() => {
+                                      props.toggleSubscribeProgress(true, elem.id);
+                                      usersAPI.getFollow(elem.id).then(data => {
+                                          if (data.resultCode == 0) {
+                                              props.follow(elem.id)
+                                          }
+                                          props.toggleSubscribeProgress(false);
+                                      });
 
-                        }}>follow</button>
+                                  }}>follow</button>
                     }</div>
-                    </div>
-                    )
-                    )}
+                </div>
+            )
+        )}
 
-                    </div>
+    </div>
 
-                    }
+}
 
-                    export default Users;
+export default Users;
