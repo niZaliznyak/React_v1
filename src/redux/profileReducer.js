@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const UPD_TYPING_POST = "UPD_TYPING_POST";
 const ADD_POST = "ADD_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
@@ -48,6 +50,13 @@ const profileReducer = (state = initialState, action) => {
 //post Creators
 export const addPostCreator = () => ({type: ADD_POST});
 export const updTypingPostCreator = (text) => ({type: UPD_TYPING_POST, typingText: text});
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+
+export const getUserProfile = (userID) => (dispatch) => {
+    usersAPI.getProfile(userID).then(response => {
+        dispatch(setUserProfile(response.data)); //dispatch вызывает setUserProfile(response.data) и тот возвращает экшн
+    });
+}
+
 
 export default profileReducer;
