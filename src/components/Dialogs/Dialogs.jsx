@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import ChatItem from "./ChatItem/ChatItem";
+import {Redirect} from "react-router-dom";
 
 const Dialogs = (props) => {
 
@@ -14,6 +15,8 @@ const Dialogs = (props) => {
         let messageTextValue = refTextArea.current.value;
         props.textChange(messageTextValue);
     }
+
+    if(!props.isAuthorize) return <Redirect to={'/login'}/>;
 
     return (
         <div className={s.dialogsWrapper}>
