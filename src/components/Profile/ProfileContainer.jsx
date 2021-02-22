@@ -4,6 +4,7 @@ import Profile from "./Profile";
 import {Redirect, withRouter} from "react-router-dom";
 import {getUserProfile} from "../../redux/profileReducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 class ProfileContainer extends React.Component {
@@ -22,16 +23,14 @@ class ProfileContainer extends React.Component {
         </div>
     }// {...this.props} передает все пропсы из mapStateToProps ProfileContainer'а в <Profile/> (59 урок 16минута)
 }
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
-let mapStateToPropsForRedirect = (state) => ({
-    isAuthorize: state.authorizeBlock.isAuthorize
-});
-
-AuthRedirectComponent = connect(mapStateToPropsForRedirect)(AuthRedirectComponent);
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
 });
 
-export default connect(mapStateToProps, {getUserProfile})(withRouter(AuthRedirectComponent));
+export default compose(
+    connect(mapStateToProps, {getUserProfile}),
+    withRouter,
+    withAuthRedirect
+)(ProfileContainer); //оборачивание идет по функциям снизу вверх по списку

@@ -3,6 +3,7 @@ import {sendMessageCreator, updTypingMessageCreator} from "../../redux/dialogsRe
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 let mapStateToProps = (state) => {
     return {
@@ -21,27 +22,8 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-let AuthRedirectComponent = withAuthRedirect(Dialogs);
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
-
-export default DialogsContainer;
-/*
-тоже самое, только тут разметка занесена в переменные
-return (
- let markupNames = props.dialogsNamesData.map(elem => <DialogItem id={elem.id} chatName={elem.name}/>);
- let markupMessages = props.messageDataBase.map(elem => <ChatItem message={elem.text}/>);
-
-    <div className={s.dialogsWrapper}>
-        <div className={s.dialogsNamesWindow}>
-            {markupNames}
-        </div>
-
-        <div className={s.chatWindow}>
-            {markupMessages}
-        </div>
-    </div>
-);
-*/
-
-
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs);
