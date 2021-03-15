@@ -22,7 +22,8 @@ export const usersAPI = {
             .then(response => response.data);
     },
     getProfile(userID) {
-        return instance.get(`profile/${userID}`);
+        console.warn("Obsolete method. Use profileAPI");
+        return profileAPI.getProfile(userID);
     }
 };
 
@@ -30,4 +31,17 @@ export const authAPI = {
     me() {
         return instance.get(`auth/me`);
     }
+}
+
+export const profileAPI = {
+
+    getProfile(userID) {
+        return instance.get(`profile/${userID}`);
+    },
+    getStatus(userID) {
+        return instance.get(`profile/status/${userID}`);
+    },
+    updateStatus(status) {
+        return instance.put(`profile/status/`, {status : status}); //"status :"-свойство объ к-рое требует сервер
+    },
 }

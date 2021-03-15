@@ -21,7 +21,7 @@ class ProfileStatus extends React.Component {
         return <div>
             {this.state.editMode ?
                 <input value={this.props.status} onBlur={this.deactivateStatusEditor.bind(this)}/>
-                : <span onClick={this.activateStatusEditor.bind(this)}>{this.props.status}</span>}
+                : <span onDoubleClick={this.activateStatusEditor.bind(this)}>{this.props.status}</span>}
         </div>
     }
 }

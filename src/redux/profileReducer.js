@@ -1,8 +1,9 @@
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 const UPD_TYPING_POST = "UPD_TYPING_POST";
 const ADD_POST = "ADD_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_STATUS = "SET_STATUS";
 
 let initialState = {
     postsDataBase: [
@@ -11,7 +12,8 @@ let initialState = {
         {id: 3, text: 'Far far away...', like: 20},
     ],
     postTypingText: "",
-    profile: null
+    profile: null,
+    status: ""
 }
 
 
@@ -39,6 +41,11 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 profile: action.profile
+            };
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.status
             }
 
         default: // если ни один из action.type не подходит. Default необходим
@@ -51,10 +58,17 @@ const profileReducer = (state = initialState, action) => {
 export const addPostCreator = () => ({type: ADD_POST});
 export const updTypingPostCreator = (text) => ({type: UPD_TYPING_POST, typingText: text});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+export const setStatus = (status) => ({type: SET_STATUS, status: status});
 
 export const getUserProfile = (userID) => (dispatch) => {
-    usersAPI.getProfile(userID).then(response => {
-        dispatch(setUserProfile(response.data)); //dispatch вызывает setUserProfile(response.data) и тот возвращает экшн
+    profileAPI.getProfile(userID).then(response => {
+        dispatch(setUserProfile(response)); //dispatch вызывает setUserProfile(response.data) и тот возвращает экшн
+    });
+}
+
+export const getStatus = (userID) => (dispatch) => {
+    profileAPI.getStatus(userID).then(response => {
+        dispatch(setStatus(response.data));
     });
 }
 
