@@ -7,10 +7,11 @@ const ProfileInfo = (props) => {
     if(!props.profile){
         return <Loading/>
     }
+    console.log(props);
     return (
         <div>
             <div className={s.descriptionBlock}>
-               {/* <img src={props.profile.photos.small}/>*/}
+                <img src={props.profile.photos.small}/>
                 {props.profile.userId} {props.profile.fullName}
                 <ProfileStatus status={props.status}/>
             </div>

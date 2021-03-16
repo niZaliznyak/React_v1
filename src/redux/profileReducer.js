@@ -62,7 +62,7 @@ export const setStatus = (status) => ({type: SET_STATUS, status: status});
 
 export const getUserProfile = (userID) => (dispatch) => {
     profileAPI.getProfile(userID).then(response => {
-        dispatch(setUserProfile(response)); //dispatch вызывает setUserProfile(response.data) и тот возвращает экшн
+        dispatch(setUserProfile(response.data)); //dispatch вызывает setUserProfile(response.data) и тот возвращает экшн
     });
 }
 
