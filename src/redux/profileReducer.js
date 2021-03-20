@@ -66,9 +66,20 @@ export const getUserProfile = (userID) => (dispatch) => {
     });
 }
 
-export const getStatus = (userID) => (dispatch) => {
+export const getUserStatus = (userID) => (dispatch) => { //получить статус
     profileAPI.getStatus(userID).then(response => {
+        if(response.data == ""){
+            response.data = "status if empty"
+        }
         dispatch(setStatus(response.data));
+    });
+}
+
+export const sendNewStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status).then(response => {
+        if (response.data.resultCode == 0) {
+            dispatch(setStatus(status));
+        }
     });
 }
 
