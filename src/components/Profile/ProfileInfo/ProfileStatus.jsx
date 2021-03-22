@@ -28,7 +28,7 @@ class ProfileStatus extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if(prevProps.status !== this.props.status){
-            this.setState({
+            this.setState({ //асинхр метод setState() перерисовывает разметку при изменении свойств state. если вместо этого просто написать this.state.status, то статус обновиться но разметка нет.
                 status: this.props.status
             })
         }
