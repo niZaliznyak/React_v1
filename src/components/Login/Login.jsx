@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import {Form, Input, Button, Checkbox} from 'antd';
 
 const layout = {
     labelCol: {
@@ -19,13 +19,14 @@ const tailLayout = {
 const Login = (props) => {
     return <div>
         <h1>Login</h1>
-        <LoginForm />
+        <LoginForm sendSignIdData={props.sendSignIdData}/>
     </div>
 }
 
 const LoginForm = (props) => {
     const onFinish = (values) => {
-        console.log('Success:', values);
+        props.sendSignIdData();
+        //console.log('Success:', values);
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -51,7 +52,7 @@ const LoginForm = (props) => {
                     },
                 ]}
             >
-                <Input />
+                <Input/>
             </Form.Item>
 
             <Form.Item
@@ -64,14 +65,14 @@ const LoginForm = (props) => {
                     },
                 ]}
             >
-                <Input.Password />
+                <Input.Password/>
             </Form.Item>
 
-            <Form.Item  name="remember" valuePropName="checked">
+            <Form.Item name="remember" valuePropName="checked">
                 <Checkbox>Remember me</Checkbox>
             </Form.Item>
 
-            <Form.Item >
+            <Form.Item>
                 <Button type="primary" htmlType="submit">
                     Submit
                 </Button>

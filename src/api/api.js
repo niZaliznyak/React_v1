@@ -30,6 +30,9 @@ export const usersAPI = {
 export const authAPI = {
     me() {
         return instance.get(`auth/me`);
+    },
+    login(loginData){
+        return instance.post(`/auth/login/${loginData}`);
     }
 }
 

@@ -1,13 +1,20 @@
-import {authAPI} from "../api/api";
+import {authAPI, usersAPI} from "../api/api";
+import {followSuccess, toggleSubscribeProgress} from "./usersReducer";
 
 const SET_LOGIN_DATA = "SET_LOGIN_DATA";
-
+const AUTHORIZE_SUCCESS = "AUTHORIZE_SUCCESS";
 
 let initialState = {
     login: null,
     userID: null,
     email: null,
     isAuthorize: false
+}
+
+let loginData = {
+    email: "",
+    password: "",
+    rememberMe: false
 }
 
 const authorizeReducer = (state = initialState, action) => {
@@ -18,6 +25,11 @@ const authorizeReducer = (state = initialState, action) => {
                 ...action.data,
                 isAuthorize: true
             };
+        case AUTHORIZE_SUCCESS:
+            return {
+                ...state,
+                isAuthorize: true
+            }
 
         default:
             return state;
@@ -33,6 +45,14 @@ export const getAuthUserData = () => (dispatch) => {
                 dispatch(setLoginData(id, email, login));
             }
         });
-}
+};
+export const authorizeSuccess = () => ({type: AUTHORIZE_SUCCESS});
+export const sendSignIdData = (email, password, rememberMe) => {
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
+            console.log(response);
+        });
+};
+
 
 export default authorizeReducer;
