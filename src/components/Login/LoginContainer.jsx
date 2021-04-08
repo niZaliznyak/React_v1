@@ -1,5 +1,5 @@
 import React from 'react';
-import {sendSignIdData, } from "../../redux/authorizeReducer";
+import {sendSignIdData} from "../../redux/authorizeReducer";
 import Login from "./Login";
 import {connect} from "react-redux";
 

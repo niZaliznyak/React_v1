@@ -12,6 +12,7 @@ const Dialogs = (props) => {
         props.sendMessage();
     }
     let onMessageChange = () => {
+        debugger;
         let messageTextValue = refTextArea.current.value;
         props.textChange(messageTextValue);
     }

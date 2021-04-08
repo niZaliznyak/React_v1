@@ -16,16 +16,16 @@ const tailLayout = {
     },
 };
 
-const Login = (props) => {
+/*const Login = (props) => {
     return <div>
         <h1>Login</h1>
-        <LoginForm />
+        <LoginForm signIn={props.signIn}/>
     </div>
-}
+}*/
 
-const LoginForm = (props) => {
+const Login = (props) => {
     const onFinish = (values) => {
-        props.signIn(values);
+        props.signIn(values.username, values.password, values.remember);
        //console.log('Success:', values);
     };
 
