@@ -1,6 +1,5 @@
 import React from 'react';
 import {sendSignIdData, } from "../../redux/authorizeReducer";
-import {compose} from "redux";
 import Login from "./Login";
 import {connect} from "react-redux";
 
@@ -12,13 +11,11 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        signIn: () => {
-            dispatch(sendSignIdData());
+        signIn: (email, password, rememberMe) => {
+            dispatch(sendSignIdData(email, password, rememberMe));
         }
     }
 }
 
 
-export default compose(
-    connect(mapStateToProps, mapDispatchToProps)
-)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

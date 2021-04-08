@@ -19,14 +19,14 @@ const tailLayout = {
 const Login = (props) => {
     return <div>
         <h1>Login</h1>
-        <LoginForm sendSignIdData={props.sendSignIdData}/>
+        <LoginForm />
     </div>
 }
 
 const LoginForm = (props) => {
     const onFinish = (values) => {
-        props.sendSignIdData();
-        //console.log('Success:', values);
+        props.signIn(values);
+       //console.log('Success:', values);
     };
 
     const onFinishFailed = (errorInfo) => {
