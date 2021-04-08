@@ -16,6 +16,9 @@ const Navbar = () => {
             <li>
                 <NavLink to="/users" activeClassName={s.active}>Users</NavLink>
             </li>
+            <li>
+                <NavLink to="/login" activeClassName={s.active}>Login</NavLink>
+            </li>
         </ul>
 
         <FriendsQuickPanelContainer/>

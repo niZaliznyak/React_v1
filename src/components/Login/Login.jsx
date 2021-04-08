@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form, Input, Button, Checkbox} from 'antd';
+import {Redirect} from "react-router-dom";
 
 const layout = {
     labelCol: {
@@ -32,6 +33,9 @@ const Login = (props) => {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
+
+    if(props.isAuthorize == true) return <div>Your already login!</div>;
+
     return (
         <Form
             {...layout}
