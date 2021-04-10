@@ -17,35 +17,21 @@ const tailLayout = {
     },
 };
 
-/*const Login = (props) => {
-    return <div>
-        <h1>Login</h1>
-        <LoginForm signIn={props.signIn}/>
-    </div>
-}*/
-
 const Login = (props) => {
     const onFinish = (values) => {
         props.signIn(values.username, values.password, values.remember);
-       //console.log('Success:', values);
+        console.log('Success:', values);
     };
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
 
-    if(props.isAuthorize == true) return <div>Your already login!</div>;
+    if (props.isAuthorize == true) return <div>Your already login!</div>;
 
-    return (
-        <Form
-            {...layout}
-            name="basic"
-            initialValues={{
-                remember: true,
-            }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-        >
+    return <div>
+        <h1>Login</h1>
+        <Form {...layout} name="basic" initialValues={{remember: true}} onFinish={onFinish} onFinishFailed={onFinishFailed}>
             <Form.Item
                 label="Username"
                 name="username"
@@ -82,7 +68,7 @@ const Login = (props) => {
                 </Button>
             </Form.Item>
         </Form>
-    );
+    </div>;
 }
 
 export default Login;
