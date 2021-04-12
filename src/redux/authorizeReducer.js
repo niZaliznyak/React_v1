@@ -1,5 +1,4 @@
 import {authAPI, usersAPI} from "../api/api";
-import {followSuccess, toggleSubscribeProgress} from "./usersReducer";
 
 const SET_LOGIN_DATA = "SET_LOGIN_DATA";
 
@@ -10,11 +9,6 @@ let initialState = {
     isAuthorize: false
 }
 
-let loginData = {
-    email: "",
-    password: "",
-    rememberMe: false
-}
 
 const authorizeReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -44,6 +38,8 @@ export const sendSignIdData = (email, password, rememberMe) => (dispatch) => {
     authAPI.login(email, password, rememberMe).then(response => {
         if (response.data.resultCode === 0) {
             dispatch(getAuthUserData());
+        } else {
+            alert(response.data.messages);
         }
     });
 };

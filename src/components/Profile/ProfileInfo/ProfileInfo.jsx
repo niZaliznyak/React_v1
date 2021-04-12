@@ -7,7 +7,7 @@ const ProfileInfo = (props) => {
     if(!props.profile){
         return <Loading/>
     }
-    console.log(props);
+
     return (
         <div>
             <div className={s.descriptionBlock}>
