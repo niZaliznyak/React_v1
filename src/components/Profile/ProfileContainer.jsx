@@ -4,15 +4,13 @@ import Profile from "./Profile";
 import {withRouter} from "react-router-dom";
 import {getUserProfile, getUserStatus, sendNewStatus} from "../../redux/profileReducer";
 import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        let userID = this.props.match.params.userID;
-        if(!userID){
-            userID = 14277;
-        }
+        let userID = this.props.yourID;
         this.props.getUserProfile(userID);
         this.props.getUserStatus(userID);
     };
@@ -27,10 +25,12 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    yourID: state.authorizeBlock.userID
 });
 
 export default compose(
     connect(mapStateToProps, {getUserProfile, getUserStatus, sendNewStatus}),
-    withRouter
+    withRouter,
+    withAuthRedirect
 )(ProfileContainer); //оборачивание идет по функциям снизу вверх по списку
