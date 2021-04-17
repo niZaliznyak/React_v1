@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {Redirect, Route, withRouter} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
@@ -15,6 +15,7 @@ import Loading from "./components/Common/Preloader/Loading";
 class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp();
+        debugger;
     };
 
     render() {

@@ -7,17 +7,31 @@ import {
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Loading from "../Common/Preloader/Loading";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getPageSize,
+    getTotalUsersCount, getUsersData,
+    waitingResponse,
+    waitingSubscribe
+} from "../../redux/user-selector";
 
 let mapStateToProps = (state) => {
-    return {
+    /*return {
         usersData: state.usersPage.usersData,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         waitingResponse: state.usersPage.waitingResponse,
         waitingSubscribe: state.usersPage.waitingSubscribe
+    }*/
+    return {
+        usersData: getUsersData(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        waitingResponse: waitingResponse(state),
+        waitingSubscribe: waitingSubscribe(state)
     }
 };
 
@@ -47,6 +61,5 @@ class UsersContainer extends React.Component {
 }
 
 export default compose(
-    withAuthRedirect,
     connect(mapStateToProps, {follow, unfollow, setCurrentPage, getUsers})
 )(UsersContainer);
