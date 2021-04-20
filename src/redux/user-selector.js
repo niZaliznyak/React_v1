@@ -1,6 +1,13 @@
-export const getUsersData = (state) => {
+import {createSelector} from "reselect";
+
+const getUsersDataSelector = (state) => {
     return state.usersPage.usersData;
 }
+
+export const getUsersData = createSelector(getUsersDataSelector, (usersData)=> {
+    return usersData.filter(u => true);
+});//83 - React JS - подключаем reselect (reselect часть 3)
+
 export const getPageSize = (state) => {
     return state.usersPage.pageSize;
 }
