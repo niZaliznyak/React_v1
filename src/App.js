@@ -15,7 +15,6 @@ import Loading from "./components/Common/Preloader/Loading";
 class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp();
-        debugger;
     };
 
     render() {

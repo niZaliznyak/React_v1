@@ -6,7 +6,7 @@ const getUsersDataSelector = (state) => {
 
 export const getUsersData = createSelector(getUsersDataSelector, (usersData)=> {
     return usersData.filter(u => true);
-});//83 - React JS - подключаем reselect (reselect часть 3)
+});//в эту функцию приходит state, хотя мы его не прописываем - так работает createSelector. (урок 83)
 
 export const getPageSize = (state) => {
     return state.usersPage.pageSize;
