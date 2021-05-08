@@ -3,9 +3,8 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 
-
-const MyPosts = (props) => {
-
+const MyPosts = React.memo(props => {
+    console.log("render");
     let refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
 
     let onPostChange = () => {
@@ -22,18 +21,19 @@ const MyPosts = (props) => {
             My posts
         </div>
 
-        <textarea onChange={onPostChange} ref={refTextArea} value={props.profilePage.postTypingText}/>
+        <textarea onChange={onPostChange} ref={refTextArea} value={props.postTypingText}/>
         <div>
             <button onClick={addToPostsDataBase}>Add post</button>
             <button>Remove</button>
         </div>
 
         <div className={s.posts}>
-            {props.profilePage.postsDataBase.map(elem => <Post message={elem.text} key={elem.id} like={elem.like}/>)}
+            {props.postsDataBase.map(elem => <Post message={elem.text} key={elem.id}
+                                                               like={elem.like}/>)}
         </div>
 
     </div>
 
-}
+});
 
 export default MyPosts;
