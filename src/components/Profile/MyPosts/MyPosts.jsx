@@ -2,9 +2,8 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
-
 const MyPosts = React.memo(props => {
-    console.log("render");
+
     let refTextArea = React.createRef(); //получает ссылку на объект. Тут на тег <textarea/>
 
     let onPostChange = () => {

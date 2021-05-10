@@ -23,25 +23,30 @@ const authorizeReducer = (state = initialState, action) => {
     }
 }
 
-export const setLoginData = (userID, email, login, isAuthorize) => ({type: SET_LOGIN_DATA, payload: {userID, email, login, isAuthorize}});
-export const getAuthUserData = () => (dispatch) => {
-    return authAPI.me()
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                let {id, email, login} = response.data.data;
-                dispatch(setLoginData(id, email, login, true));
-            }
-        });
+export const setLoginData = (userID, email, login, isAuthorize) => ({
+    type: SET_LOGIN_DATA,
+    payload: {userID, email, login, isAuthorize}
+});
+
+export const getAuthUserData = () => async (dispatch) => {
+    let response = await authAPI.me();
+
+    if (response.data.resultCode === 0) {
+        let {id, email, login} = response.data.data;
+        dispatch(setLoginData(id, email, login, true));
+    }
+
 };
 
-export const sendSignIdData = (email, password, rememberMe) => (dispatch) => {
-    authAPI.login(email, password, rememberMe).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(getAuthUserData());
-        } else {
-            alert(response.data.messages);
-        }
-    });
+export const sendSignIdData = (email, password, rememberMe) => async (dispatch) => {
+    let response = await authAPI.login(email, password, rememberMe);
+
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthUserData());
+    } else {
+        alert(response.data.messages);
+    }
+
 };
 
 export const logOut = () => (dispatch) => {

@@ -76,14 +76,14 @@ export const toggleWaiting = (toggle) => ({type: WAITING_RESPONSE, toggle});
 export const toggleSubscribeProgress = (toggle, userID) => ({type: WAITING_SUBSCRIBE, toggle, userID});
 
 export const getUsers = (currentPage, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
 
         dispatch(toggleWaiting(true));
 
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
-            dispatch(toggleWaiting(false));
-            dispatch(setUsers(data.items));
-        });
+        let data = await usersAPI.getUsers(currentPage, pageSize);
+        dispatch(toggleWaiting(false));
+        dispatch(setUsers(data.items));
+
     }
 }
 

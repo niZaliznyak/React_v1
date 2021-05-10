@@ -60,27 +60,28 @@ export const updTypingPostCreator = (text) => ({type: UPD_TYPING_POST, typingTex
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status: status});
 
-export const getUserProfile = (userID) => (dispatch) => {
-    profileAPI.getProfile(userID).then(response => {
-        dispatch(setUserProfile(response.data)); //dispatch вызывает setUserProfile(response.data) и тот возвращает экшн
-    });
+export const getUserProfile = (userID) => async (dispatch) => {
+    let response = await profileAPI.getProfile(userID);
+
+    dispatch(setUserProfile(response.data)); //dispatch вызывает setUserProfile(response.data) и тот возвращает экшн
 }
 
-export const getUserStatus = (userID) => (dispatch) => { //получить статус
-    profileAPI.getStatus(userID).then(response => {
-        if(response.data == ""){
-            response.data = "status if empty"
-        }
-        dispatch(setStatus(response.data));
-    });
+export const getUserStatus = (userID) => async (dispatch) => { //получить статус
+    let response = await profileAPI.getStatus(userID);
+
+    if (response.data == "") {
+        response.data = "status if empty"
+    }
+    dispatch(setStatus(response.data));
+
 }
 
-export const sendNewStatus = (status) => (dispatch) => {
-    profileAPI.updateStatus(status).then(response => {
-        if (response.data.resultCode == 0) {
-            dispatch(setStatus(status));
-        }
-    });
+export const sendNewStatus = (status) => async (dispatch) => {
+    let response = await profileAPI.updateStatus(status);
+    if (response.data.resultCode == 0) {
+        dispatch(setStatus(status));
+    }
+
 }
 
 
