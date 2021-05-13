@@ -66,7 +66,7 @@ export const getUserProfile = (userID) => async (dispatch) => {
     dispatch(setUserProfile(response.data)); //dispatch вызывает setUserProfile(response.data) и тот возвращает экшн
 }
 
-export const getUserStatus = (userID) => async (dispatch) => { //получить статус
+export const getUserStatus = (userID) => async (dispatch) => {
     let response = await profileAPI.getStatus(userID);
 
     if (response.data == "") {

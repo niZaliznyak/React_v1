@@ -87,29 +87,27 @@ export const getUsers = (currentPage, pageSize) => {
     }
 }
 
-export const unfollow = (userID) => {
-    return (dispatch) => {
-        dispatch(toggleSubscribeProgress(true, userID));
-        usersAPI.getUnfollow(userID).then(data => {
-            if (data.resultCode == 0) {
-                dispatch(unfollowSuccess(userID));
-            }
-            dispatch(toggleSubscribeProgress(false));
-        });
+export const followUnfollow = async (dispatch, userID, APImethod, actionCreator) => {
 
+    dispatch(toggleSubscribeProgress(true, userID));
+
+    let response = await APImethod(userID);
+    if (response.resultCode == 0) {
+        dispatch(actionCreator(userID));
+    }
+    dispatch(toggleSubscribeProgress(false));
+
+}
+
+export const unfollow = (userID) => {
+    return async (dispatch) => { //функция dispatch приходит в санку из стора. Параметры, как userID передавать только через замыкание.
+        followUnfollow(dispatch, userID, usersAPI.getUnfollow.bind(usersAPI), unfollowSuccess)
     }
 }
 
 export const follow = (userID) => {
-    return (dispatch) => {
-        dispatch(toggleSubscribeProgress(true, userID));
-        usersAPI.getFollow(userID).then(data => {
-            if (data.resultCode == 0) {
-                dispatch(followSuccess(userID));
-            }
-            dispatch(toggleSubscribeProgress(false));
-        });
-
+    return async (dispatch) => { //функция dispatch приходит в санку из стора. Параметры, как userID передавать только через замыкание.
+        followUnfollow(dispatch, userID, usersAPI.getFollow.bind(usersAPI), followSuccess)
     }
 }
 
