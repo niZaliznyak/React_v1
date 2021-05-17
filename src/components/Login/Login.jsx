@@ -1,6 +1,5 @@
 import React from 'react';
 import {Form, Input, Button, Checkbox} from 'antd';
-import {Redirect} from "react-router-dom";
 
 const layout = {
     labelCol: {
@@ -17,9 +16,9 @@ const tailLayout = {
     },
 };
 
-const Login = (props) => {
+const Login = ({signIn, isAuthorize}) => {
     const onFinish = (values) => {
-        props.signIn(values.username, values.password, values.remember);
+        signIn(values.username, values.password, values.remember);
         console.log('Success:', values);
     };
 
@@ -27,7 +26,7 @@ const Login = (props) => {
         console.log('Failed:', errorInfo);
     };
 
-    if (props.isAuthorize == true) return <div>Your already login!</div>;
+    if (isAuthorize == true) return <div>Your already login!</div>;
 
     return <div>
         <h1>Login</h1>
