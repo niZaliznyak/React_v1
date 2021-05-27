@@ -17,8 +17,6 @@ const Dialogs = (props) => {
         props.textChange(messageTextValue);
     }
 
-    if(!props.isAuthorize) return <Redirect to={'/login'}/>;
-
     return (
         <div className={s.dialogsWrapper}>
             <div className={s.dialogsNamesWindow}>

@@ -15,6 +15,7 @@ import {
     waitingResponse,
     waitingSubscribe
 } from "../../redux/user-selector";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 let mapStateToProps = (state) => {
     /*return {

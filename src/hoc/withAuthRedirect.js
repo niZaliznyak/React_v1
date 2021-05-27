@@ -11,11 +11,11 @@ export const withAuthRedirect = (Component) => {
         }
     }
 
-    let mapStateToPropsForRedirect = (state) => ({
+    let mapStateToProps = (state) => ({
         isAuthorize: state.authorizeBlock.isAuthorize
     });
 
-    let ConnectedAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent);
+    let ConnectedAuthRedirectComponent = connect(mapStateToProps)(RedirectComponent);
 
     return ConnectedAuthRedirectComponent;
 
