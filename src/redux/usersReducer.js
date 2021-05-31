@@ -4,6 +4,7 @@ const SET_USERS = "SET_USERS";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_PAGE_SIZE = "SET_PAGE_SIZE";
 const WAITING_RESPONSE = "WAITING_RESPONSE";
 const WAITING_SUBSCRIBE = "WAITING_SUBSCRIBE";
 
@@ -52,6 +53,11 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 currentPage: action.currentPage
             }
+        case SET_PAGE_SIZE:
+            return {
+                ...state,
+                pageSize: action.pageSize
+            }
 
         case WAITING_RESPONSE:
             return {
@@ -73,6 +79,7 @@ export const followSuccess = (userID) => ({type: FOLLOW, id: userID});
 export const unfollowSuccess = (userID) => ({type: UNFOLLOW, id: userID});
 export const setUsers = (users, totalCount) => ({type: SET_USERS, users, totalCount});
 export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, currentPage: pageNumber});
+export const setPageSize = (pageSize) => ({type: SET_PAGE_SIZE, pageSize: pageSize});
 export const toggleWaiting = (toggle) => ({type: WAITING_RESPONSE, toggle});
 export const toggleSubscribeProgress = (toggle, userID) => ({type: WAITING_SUBSCRIBE, toggle, userID});
 

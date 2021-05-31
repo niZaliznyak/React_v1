@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from "./Users.module.css";
 import AvatarIMG from '../../assets/img/simple-avatar.png';
 import {NavLink} from "react-router-dom";
 import {Pagination} from "antd";
+import {setStatus} from "../../redux/profileReducer";
 
 let Users = (props) => {
 
-    function onChange(pageNumber) {
-        props.onPageChange(pageNumber);
+    useEffect( () => {
+        props.onPageChange(props.pageNumber, props.pageSize);
+    }, [props.pageSize]);
+
+    function onChange(pageNumber, pageSize) {
+        props.onPageChange(pageNumber, pageSize);
     }
 
     return <div>

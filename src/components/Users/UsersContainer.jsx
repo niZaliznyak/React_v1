@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {
     follow, getUsers,
-    setCurrentPage,
+    setCurrentPage, setPageSize,
     unfollow
 } from "../../redux/usersReducer";
 import Users from "./Users";
@@ -13,9 +13,8 @@ import {
     getPageSize,
     getTotalUsersCount, getUsersData,
     waitingResponse,
-    waitingSubscribe
+    waitingSubscribe,
 } from "../../redux/user-selector";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 let mapStateToProps = (state) => {
     /*return {
@@ -43,9 +42,10 @@ class UsersContainer extends React.Component {
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
-    onPageChange = (pageNumber) => {
+    onPageChange = (pageNumber, pageSize) => {
         this.props.setCurrentPage(pageNumber);
         this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.setPageSize(pageSize);
     }
 
     render() {
@@ -62,5 +62,5 @@ class UsersContainer extends React.Component {
 }
 
 export default compose(
-    connect(mapStateToProps, {follow, unfollow, setCurrentPage, getUsers})
+    connect(mapStateToProps, {follow, unfollow, setCurrentPage, getUsers, setPageSize})
 )(UsersContainer);
