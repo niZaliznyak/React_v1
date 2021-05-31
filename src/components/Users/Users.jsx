@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./Users.module.css";
 import AvatarIMG from '../../assets/img/simple-avatar.png';
 import {NavLink} from "react-router-dom";
+import {Pagination} from "antd";
 
 let Users = (props) => {
 
@@ -10,15 +11,20 @@ let Users = (props) => {
         pages.push(i);
     }
 
+    function onChange(pageNumber) {
+        console.log('Page: ', pageNumber);
+    }
+
     return <div>
         <div>
             {pages.map(p => {
                 return <span className={props.currentPage === p ? styles.selectedPage : ""}
                              onClick={(e) => {
                                  props.onPageChange(p)
-                             }}>{p}</span>
+                             }}>{p} |</span>
             })}
         </div>
+        <Pagination defaultCurrent={1} total={props.totalUsersCount} />
 
         {props.usersData.map(elem => (
                 <div className={styles.userElement} key={elem.id}>

@@ -43,7 +43,8 @@ const usersReducer = (state = initialState, action) => {
         case SET_USERS:
             return {
                 ...state,
-                usersData: action.users
+                usersData: action.users,
+                totalUsersCount: action.totalCount
             };
 
         case SET_CURRENT_PAGE:
@@ -70,7 +71,7 @@ const usersReducer = (state = initialState, action) => {
 
 export const followSuccess = (userID) => ({type: FOLLOW, id: userID});
 export const unfollowSuccess = (userID) => ({type: UNFOLLOW, id: userID});
-export const setUsers = (users) => ({type: SET_USERS, users});
+export const setUsers = (users, totalCount) => ({type: SET_USERS, users, totalCount});
 export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, currentPage: pageNumber});
 export const toggleWaiting = (toggle) => ({type: WAITING_RESPONSE, toggle});
 export const toggleSubscribeProgress = (toggle, userID) => ({type: WAITING_SUBSCRIBE, toggle, userID});
@@ -82,7 +83,7 @@ export const getUsers = (currentPage, pageSize) => {
 
         let data = await usersAPI.getUsers(currentPage, pageSize);
         dispatch(toggleWaiting(false));
-        dispatch(setUsers(data.items));
+        dispatch(setUsers(data.items, data.totalCount));
 
     }
 }
