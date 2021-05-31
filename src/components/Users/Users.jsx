@@ -6,25 +6,13 @@ import {Pagination} from "antd";
 
 let Users = (props) => {
 
-    let pages = [];
-    for (let i = 1; i <= Math.ceil(props.totalUsersCount / props.pageSize); i++) {
-        pages.push(i);
-    }
-
     function onChange(pageNumber) {
-        console.log('Page: ', pageNumber);
+        props.onPageChange(pageNumber);
     }
 
     return <div>
-        <div>
-            {pages.map(p => {
-                return <span className={props.currentPage === p ? styles.selectedPage : ""}
-                             onClick={(e) => {
-                                 props.onPageChange(p)
-                             }}>{p} |</span>
-            })}
-        </div>
-        <Pagination defaultCurrent={1} total={props.totalUsersCount} />
+        <Pagination defaultCurrent={1} total={props.totalUsersCount} onChange={onChange}
+                    defaultPageSize={props.pageSize}/>
 
         {props.usersData.map(elem => (
                 <div className={styles.userElement} key={elem.id}>
