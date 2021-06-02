@@ -1,15 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import styles from "./Users.module.css";
-import AvatarIMG from '../../assets/img/simple-avatar.png';
-import {NavLink} from "react-router-dom";
 import {Pagination} from "antd";
-import {setStatus} from "../../redux/profileReducer";
+import UserElementMarkup from "./UserElementMarkup";
+import React from 'react';
 
 let Users = (props) => {
-
-    useEffect( () => {
-        props.onPageChange(props.pageNumber, props.pageSize);
-    }, [props.pageSize]);
 
     function onChange(pageNumber, pageSize) {
         props.onPageChange(pageNumber, pageSize);
@@ -20,30 +13,9 @@ let Users = (props) => {
                     defaultPageSize={props.pageSize}/>
 
         {props.usersData.map(elem => (
-                <div className={styles.userElement} key={elem.id}>
-                    <NavLink to={`/profile/${elem.id}`}>
-                        <div><img alt="userPhoto" className={styles.userPhoto}
-                                  src={elem.photos.small != null ? elem.photos.small : AvatarIMG}/></div>
-                    </NavLink>
-                    <div>Nickname: {elem.name}; id: {elem.id}; status: {elem.status}</div>
-                    <div>{elem.followed == true ?
-
-                        <button disabled={props.waitingSubscribe.status == true && props.waitingSubscribe.id == elem.id}
-
-                                onClick={() => {
-                                    props.unfollow(elem.id)
-                                }}>unfollow</button>
-
-
-                        : <button disabled={props.waitingSubscribe.status == true && props.waitingSubscribe.id == elem.id}
-
-                                  onClick={() => {
-                                      props.follow(elem.id)
-                                  }}>follow</button>
-                    }</div>
-                </div>
-            )
-        )}
+                    <UserElementMarkup key={elem.id} id={elem.id} name={elem.name} followed={elem.followed}
+                                       waitingSubscribe={props.waitingSubscribe} follow={props.follow}                                           unfollow={props.unfollow} photos={elem.photos}/>
+            ))}
 
     </div>
 

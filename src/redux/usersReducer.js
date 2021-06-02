@@ -10,8 +10,8 @@ const WAITING_SUBSCRIBE = "WAITING_SUBSCRIBE";
 
 let initialState = {
     usersData: [],
-    pageSize: 5,
-    totalUsersCount: 30,
+    pageSize: 10,
+    totalUsersCount: 0,
     currentPage: 1,
     waitingResponse: false,
     waitingSubscribe: {status: false, id: null}
@@ -87,7 +87,7 @@ export const getUsers = (currentPage, pageSize) => {
     return async (dispatch) => {
 
         dispatch(toggleWaiting(true));
-
+        currentPage = currentPage == 0 ? currentPage = 1 : currentPage;
         let data = await usersAPI.getUsers(currentPage, pageSize);
         dispatch(toggleWaiting(false));
         dispatch(setUsers(data.items, data.totalCount));
