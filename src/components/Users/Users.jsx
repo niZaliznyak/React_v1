@@ -14,7 +14,7 @@ let Users = (props) => {
 
         {props.usersData.map(elem => (
                     <UserElementMarkup key={elem.id} id={elem.id} name={elem.name} followed={elem.followed}
-                                       waitingSubscribe={props.waitingSubscribe} follow={props.follow}                                           unfollow={props.unfollow} photos={elem.photos}/>
+                                       waitingSubscribe={props.waitingSubscribe} follow={props.follow}                                           unfollow={props.unfollow} photos={elem.photos} status={elem.status}/>
             ))}
 
     </div>

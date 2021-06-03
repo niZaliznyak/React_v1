@@ -19,6 +19,7 @@ const tailLayout = {
 const Login = ({signIn, isAuthorize}) => {
     const onFinish = (values) => {
         signIn(values.username, values.password, values.remember);
+        console.log('Success:', values);
     };
 
     const onFinishFailed = (errorInfo) => {
