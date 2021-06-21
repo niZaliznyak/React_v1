@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import Profile from "./Profile";
 import {withRouter} from "react-router-dom";
-import {getUserProfile, getUserStatus, sendNewStatus} from "../../redux/profileReducer";
+import {getUserProfile, getUserStatus, uploadPhoto, sendNewStatus} from "../../redux/profileReducer";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
@@ -33,7 +33,7 @@ let mapStateToProps = (state) => ({
 });
 
 export default compose(
-    connect(mapStateToProps, {getUserProfile, getUserStatus, sendNewStatus}),
+    connect(mapStateToProps, {getUserProfile, getUserStatus, sendNewStatus, savePhoto: uploadPhoto}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer); //оборачивание идет по функциям снизу вверх по списку

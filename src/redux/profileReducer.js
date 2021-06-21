@@ -4,6 +4,7 @@ const UPD_TYPING_POST = "UPD_TYPING_POST";
 const ADD_POST = "ADD_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
+const SET_PHOTOS_LINKS = "SET_PHOTOS_LINKS";
 
 let initialState = {
     postsDataBase: [
@@ -47,6 +48,12 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 status: action.status
             }
+        case SET_PHOTOS_LINKS:
+            debugger;
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
+            }
 
         default: // если ни один из action.type не подходит. Default необходим
             return state;
@@ -59,6 +66,7 @@ export const addPostCreator = () => ({type: ADD_POST});
 export const updTypingPostCreator = (text) => ({type: UPD_TYPING_POST, typingText: text});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status: status});
+export const setPhotosLinks = (photos) => ({type: SET_PHOTOS_LINKS, photos});
 
 export const getUserProfile = (userID) => async (dispatch) => {
     let response = await profileAPI.getProfile(userID);
@@ -66,23 +74,32 @@ export const getUserProfile = (userID) => async (dispatch) => {
     dispatch(setUserProfile(response.data)); //dispatch вызывает setUserProfile(response.data) и тот возвращает экшн
 }
 
-export const getUserStatus = (userID) => async (dispatch) => {
-    let response = await profileAPI.getStatus(userID);
+export const getUserStatus = (userID) =>
+    async (dispatch) => {
+        let response = await profileAPI.getStatus(userID);
 
-    if (response.data === "") {
-        response.data = "status if empty"
-    }
-    dispatch(setStatus(response.data));
+        if (response.data === "") {
+            response.data = "status if empty"
+        }
+        dispatch(setStatus(response.data));
 
-}
-
-export const sendNewStatus = (status) => async (dispatch) => {
-    let response = await profileAPI.updateStatus(status);
-    if (response.data.resultCode === 0) {
-        dispatch(setStatus(status));
     }
 
-}
+export const sendNewStatus = (status) =>
+    async (dispatch) => {
+        let response = await profileAPI.updateStatus(status);
+        if (response.data.resultCode === 0) {
+            dispatch(setStatus(status));
+        }
 
+    }
+
+export const uploadPhoto = (file) =>
+    async (dispatch) => {
+        let response = await profileAPI.updatePhoto(file);
+        if (response.data.resultCode === 0) {
+            dispatch(setPhotosLinks(response.data.data.photos));
+        }
+    }
 
 export default profileReducer;

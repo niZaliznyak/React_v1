@@ -8,7 +8,7 @@ const instance = axios.create({
     }
 });
 
-export const usersAPI = {
+export const usersAPI = { //API для странички пользователей
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data);
@@ -27,7 +27,7 @@ export const usersAPI = {
     }
 };
 
-export const authAPI = {
+export const authAPI = { // API для логина
     me() {
         return instance.get(`auth/me`);
     },
@@ -39,7 +39,7 @@ export const authAPI = {
     }
 }
 
-export const profileAPI = {
+export const profileAPI = { //API для своего профиля
 
     getProfile(userID) {
         return instance.get(`profile/${userID}`);
@@ -50,4 +50,13 @@ export const profileAPI = {
     updateStatus(status) {
         return instance.put(`profile/status/`, {status : status}); //"status :"-свойство объ к-рое требует сервер
     },
+    updatePhoto(file) {
+        let formData = new FormData();
+        formData.append("image", file)
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    }
 }
