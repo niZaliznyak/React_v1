@@ -13,3 +13,8 @@ img.dialogImg {
     width: 45px;
     border-radius: 8px;
 }
+
+.dialogName {
+    color: white;
+    font-weight: bold;
+}

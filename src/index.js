@@ -2,7 +2,7 @@ import React from 'react';
 import * as serviceWorker from './serviceWorker';
 import store from "./redux/reduxStore";
 import ReactDOM from "react-dom";
-import {BrowserRouter} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 import App from "./App";
 import {Provider} from "react-redux";
 import 'antd/dist/antd.css';
@@ -11,13 +11,13 @@ import './index.css';
 
 let reRenderEntireTree = () => {
     ReactDOM.render(
-        <BrowserRouter>
+        <HashRouter>
 
             <Provider store={store}>
                 <App />
             </Provider>
 
-        </BrowserRouter>, document.getElementById('root'));
+        </HashRouter>, document.getElementById('root'));
 }; //bind позволяет при использовании this. ссылаться на свойства оригинального объекта, а не свойства объекта которым будет вызвана.
 
 reRenderEntireTree();

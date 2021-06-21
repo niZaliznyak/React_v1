@@ -12,13 +12,14 @@ let UserElementMarkup = (props) => {
                       src={props.photos.small != null ? props.photos.small : AvatarIMG}/></div>
         </NavLink>
         <div>Nickname: {props.name}; id: {props.id}; status: {props.status}</div>
-        <button disabled={props.waitingSubscribe.status == true &&
-                          props.waitingSubscribe.id == props.id}
-                onClick={() => {
-                    props.followed == true ? props.unfollow(props.id)
+        <button
+            disabled={props.waitingSubscribe.status === true && props.waitingSubscribe.id === props.id}
+            onClick={() => {
+                    props.followed === true
+                        ? props.unfollow(props.id)
                         : props.follow(props.id);
                 }}>
-            {props.followed == true ? "unfollow" : "follow"}
+            {props.followed === true ? "unfollow" : "follow"}
         </button>
 
 

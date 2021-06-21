@@ -87,7 +87,7 @@ export const getUsers = (currentPage, pageSize) => {
     return async (dispatch) => {
 
         dispatch(toggleWaiting(true));
-        currentPage = currentPage == 0 ? currentPage = 1 : currentPage;
+        currentPage = currentPage === 0 ? currentPage = 1 : currentPage;
         let data = await usersAPI.getUsers(currentPage, pageSize);
         dispatch(toggleWaiting(false));
         dispatch(setUsers(data.items, data.totalCount));
@@ -100,7 +100,7 @@ export const followUnfollow = async (dispatch, userID, APImethod, actionCreator)
     dispatch(toggleSubscribeProgress(true, userID));
 
     let response = await APImethod(userID);
-    if (response.resultCode == 0) {
+    if (response.resultCode === 0) {
         dispatch(actionCreator(userID));
     }
     dispatch(toggleSubscribeProgress(false));

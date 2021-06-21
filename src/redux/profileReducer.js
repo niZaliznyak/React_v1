@@ -1,4 +1,4 @@
-import {profileAPI, usersAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 
 const UPD_TYPING_POST = "UPD_TYPING_POST";
 const ADD_POST = "ADD_POST";
@@ -69,7 +69,7 @@ export const getUserProfile = (userID) => async (dispatch) => {
 export const getUserStatus = (userID) => async (dispatch) => {
     let response = await profileAPI.getStatus(userID);
 
-    if (response.data == "") {
+    if (response.data === "") {
         response.data = "status if empty"
     }
     dispatch(setStatus(response.data));
@@ -78,7 +78,7 @@ export const getUserStatus = (userID) => async (dispatch) => {
 
 export const sendNewStatus = (status) => async (dispatch) => {
     let response = await profileAPI.updateStatus(status);
-    if (response.data.resultCode == 0) {
+    if (response.data.resultCode === 0) {
         dispatch(setStatus(status));
     }
 

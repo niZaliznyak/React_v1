@@ -26,7 +26,7 @@ const Login = ({signIn, isAuthorize}) => {
         console.log('Failed:', errorInfo);
     };
 
-    if (isAuthorize == true) return <div>Your already login!</div>;
+    if (isAuthorize === true) return <div>Your already login!</div>;
 
     return <div>
         <h1>Login</h1>
