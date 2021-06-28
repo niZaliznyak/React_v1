@@ -58,7 +58,7 @@ class App extends React.Component {
                             <NavLink to="/login" activeClassName={s.active}>Login</NavLink>
                         </Menu.Item>
                         <Menu.Item key="5" icon={<GithubOutlined />}>
-                            <a target='_blank' href="https://nizaliznyak.github.io/React_v1" activeClassName={s.active}>Git-repo</a>
+                            <a target='_blank' href="https://github.com/niZaliznyak/React_v1" activeClassName={s.active}>Git-repo</a>
                         </Menu.Item>
                     </Menu>
                 </Sider>
@@ -72,7 +72,7 @@ class App extends React.Component {
                             <Route path="/login" render={() => <LoginContainer/>}/>
                         </div>
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>Ссылка на <a id='gitURL' href="https://nizaliznyak.github.io/React_v1">git-репозиторий</a></Footer>
+                    <Footer style={{ textAlign: 'center' }}>Ссылка на <a target='_blank' id='gitURL' href="https://github.com/niZaliznyak/React_v1">git-репозиторий</a></Footer>
                 </Layout>
             </Layout>
             /*<div className='app-wrapper'>
