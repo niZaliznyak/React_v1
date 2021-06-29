@@ -34,7 +34,7 @@ const profileReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
-                postsDataBase: [...state.postsDataBase, newPost],
+                postsDataBase: [ newPost,...state.postsDataBase],
                 postTypingText: ''
             };
 

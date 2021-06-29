@@ -1,6 +1,7 @@
 import React from 'react';
-import s from './MyPosts.module.css';
-import Post from './Post/Post';
+import AvatarIMG from '../../../assets/img/simple-avatar.png';
+import style from './MyPosts.module.css'
+import {List} from "antd";
 
 const MyPosts = React.memo(props => {
 
@@ -15,10 +16,13 @@ const MyPosts = React.memo(props => {
         props.addPost();
     }
 
-    return <div className={s.content}>
-        <div>
+    let data = props.postsDataBase;
+
+    return <div>
+        <h2>
             My posts
-        </div>
+        </h2>
+        <hr/>
 
         <textarea onChange={onPostChange} ref={refTextArea} value={props.postTypingText}/>
         <div>
@@ -26,10 +30,19 @@ const MyPosts = React.memo(props => {
             <button>Remove</button>
         </div>
 
-        <div className={s.posts}>
-            {props.postsDataBase.map(elem => <Post message={elem.text} key={elem.id}
-                                                               like={elem.like}/>)}
-        </div>
+        <List
+            itemLayout="horizontal"
+            dataSource={data}
+            renderItem={item => (
+                <List.Item className={style.listItem}>
+                    <List.Item.Meta
+                        avatar={<img src={AvatarIMG}/>}
+                        title={<a href="https://ant.design">{item.title}</a>}
+                        description={item.text} bordered={true}
+                    />
+                </List.Item>
+            )}
+        />
 
     </div>
 
